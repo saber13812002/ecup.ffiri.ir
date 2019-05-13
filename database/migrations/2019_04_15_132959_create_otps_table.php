@@ -20,6 +20,14 @@ class CreateOtpsTable extends Migration
             $table->integer('verified');
             $table->timestamps();
         });
+
+        DB::table('otps')->insert(
+            [
+                'id' => 1,
+                'mobile_number' => "09196070718",
+                'verification_code' => "98419"
+            ]
+        );
     }
 
     /**
