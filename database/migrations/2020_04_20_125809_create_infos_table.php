@@ -30,13 +30,21 @@ class CreateInfosTable extends Migration
             $table->timestamps();
         });
 
-        // DB::table('infos')->insert(
-        //     [
-        //         'author_id' => 1,
-        //         'req_date' => new DateTime(),
-        //         'req_time' => new DateTime()
-        //     ]
-        // );
+        DB::table('infos')->insert(
+            [
+                'author_id' => 1,
+
+                'name'=>'saber',
+                'family'=>'taba',
+                'email'=>'saber@taba.ir',
+                'mobile'=>'9196070718',
+                'national_code'=>'0059449047',
+                'psn_id'=>'ASDF76786',
+
+                'req_date' => new DateTime(),
+                'req_time' => new DateTime()
+            ]
+        );
     }
 
     /**

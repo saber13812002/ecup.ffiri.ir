@@ -41,7 +41,8 @@ Route::post('v1/requestOtp/', 'OtpController@otp1');
 Route::post('v1/otp2/', 'OtpController@otp2');
 Route::post('v1/verifyOtp/', 'OtpController@otp2');
 
-
+Route::get('v1/info/', 'InfoController@api');
+Route::get('v1/info/{id}', 'InfoController@getbyid');
 
 Route::group(['middleware' => ['jwt.verify']], function () {
 
@@ -51,6 +52,9 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::get('v1/appointment/', 'AppointmentController@api');
     Route::get('v1/appointment/{id}', 'AppointmentController@getbyid');
-
     Route::post('v1/appointment/', 'AppointmentController@post');
+
+    // Route::get('v1/info/', 'InfoController@api');
+    // Route::get('v1/info/{id}', 'InfoController@getbyid');
+    Route::post('v1/info/', 'InfoController@post');
 });
