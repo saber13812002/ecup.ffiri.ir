@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+use App\Info;
+
 class User extends \TCG\Voyager\Models\User implements JWTSubject
 {
     use Notifiable;
@@ -47,4 +49,9 @@ class User extends \TCG\Voyager\Models\User implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function infos()
+    {
+        return $this->hasOne('App\Info');
+    }
 }
