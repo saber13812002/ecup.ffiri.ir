@@ -24,8 +24,9 @@ class CreateOtpsTable extends Migration
         DB::table('otps')->insert(
             [
                 'id' => 1,
-                'mobile_number' => "09196070718",
-                'verification_code' => "98419"
+                'mobile_number' => "9196070718",
+                'verification_code' => "98419",
+                'verified' => 0
             ]
         );
     }
