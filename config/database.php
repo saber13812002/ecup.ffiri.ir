@@ -44,7 +44,7 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 's3.liara.ir'),
             'port' => env('DB_PORT', '33085'),
-            'database' => env('DB_DATABASE', 'ennings_laravel_07'),
+            'database' => env('DB_DATABASE', 'fifa_laravel_07'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', '2FlzfgIY39BXewhyl2qo6J2j'),
             'unix_socket' => env('DB_SOCKET', ''),
