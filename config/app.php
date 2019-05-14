@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'fifa-web-api'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://new.ennings.com'),
+    'url' => env('APP_URL', 'https://fifa-web-api.liara.run'),
 
     'asset_url' => env('ASSET_URL', null),
 
