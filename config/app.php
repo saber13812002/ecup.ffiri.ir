@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://fifa-web-api.liara.run'),
+    'url' => env('APP_URL', 'https://ecub.ffiri.ir'),
 
     'asset_url' => env('ASSET_URL', null),
 

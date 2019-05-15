@@ -25,7 +25,7 @@ class CreateOtpsTable extends Migration
             [
                 'id' => 1,
                 'mobile_number' => "9196070718",
-                'verification_code' => "98419",
+                'verification_code' => "11111",
                 'verified' => 0
             ]
         );

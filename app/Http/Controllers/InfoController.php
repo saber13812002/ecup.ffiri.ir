@@ -70,30 +70,18 @@ class InfoController extends Controller
 
         $ids = Info::select('id')->where('email', '=', $request['email'])->first();
 
+        $inf = Info::find($request['id']);
+        $inf->req_time = now();
 
-        if ($ids == null) {
-            $inf = new Info;
-            $inf->req_date = now();
-            $inf->req_time = now();
-            $inf->author_id = 1;
+        $inf->name = $request['name'];
+        $inf->family = $request['family'];
+        $inf->mobile = $request['mobile'];
+        $inf->email = $request['email'];
+        $inf->national_code = $request['national_code'];
+        $inf->psn_id = $request['psn_id'];
 
-            $inf->save();
-        }
-        else if ($ids != null && ($request['name'] != null || $request['family'] != null)) {
-            $inf = new Info;
-            $inf->req_date = now();
-            $inf->req_time = now();
-            $inf->author_id = 1;
+        $inf->save();
 
-            $inf->email = $request['email'];
-            $inf->name = $request['name'];
-            $inf->family = $request['family'];
-
-            $inf->save();
-        } else {
-
-            $inf = $this->info->where('email', '=', $request['email'])->first();
-        }
 
         if (1 == 1)
             return response()->json([

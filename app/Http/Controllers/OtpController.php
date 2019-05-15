@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 use Illuminate\Support\Facades\Input;
+use App\Info;
+use DateTime;
 
 class OtpController extends Controller
 {
@@ -44,7 +46,7 @@ class OtpController extends Controller
 
         if ($rand_no) {
 
-            //app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
+            app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
         } else {
             $rand_no = rand(10000, 99999);
             $otp1 = new Otp;
@@ -53,7 +55,7 @@ class OtpController extends Controller
             $otp1->verified = 0;
             $otp1->save();
             //echo $rand_no;
-            //app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
+            app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
         }
         return json_encode($this->success);
     }
@@ -101,14 +103,16 @@ class OtpController extends Controller
                         return response()->json(['error' => 'could_not_create_token'], 500);
                     }
 
+                    $ids = User::select('id')->where('email', '=', $email)->first();
+
                     $usr = [
+                        'id' => $ids,
                         'name' => $username,
                         'email' => $email,
                         'password' => Hash::make($password),
                     ];
 
                     return response()->json(compact('usr', 'token'), 201);
-
                 }
                 //not exist sigup
                 else {
@@ -118,12 +122,20 @@ class OtpController extends Controller
                         'password' => Hash::make($password),
                     ]);
 
+                    $inf = new Info;
+                    $inf->req_date = now();
+                    $inf->req_time = now();
+                    $inf->author_id = $user->id;
+                    $inf->save();
 
                     $usr = [
+                        'id' => $user->id,
                         'name' => $username,
                         'email' => $email,
                         'password' => Hash::make($password),
                     ];
+
+                    //todo: verified =1
 
                     $token = JWTAuth::fromUser($user);
                     //TODO verified = 1

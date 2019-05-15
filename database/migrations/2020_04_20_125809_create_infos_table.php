@@ -24,27 +24,12 @@ class CreateInfosTable extends Migration
             $table->string('national_code')->nullable();
             $table->string('psn_id')->nullable();
 
-            $table->date('req_date');
-            $table->datetime('req_time');
+            $table->date('req_date')->useCurrent = true;
+            $table->datetime('req_time')->useCurrent = true;
             $table->string('req_status')->nullable();
             $table->timestamps();
         });
 
-        DB::table('infos')->insert(
-            [
-                'author_id' => 1,
-
-                'name'=>'saber',
-                'family'=>'taba',
-                'email'=>'saber@taba.ir',
-                'mobile'=>'9196070718',
-                'national_code'=>'0059449047',
-                'psn_id'=>'ASDF76786',
-
-                'req_date' => new DateTime(),
-                'req_time' => new DateTime()
-            ]
-        );
     }
 
     /**
