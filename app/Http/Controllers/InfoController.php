@@ -71,12 +71,18 @@ class InfoController extends Controller
         $inf = Info::find($request['id']);
         $inf->req_time = now();
 
-        $inf->name = $request['name'];
-        $inf->family = $request['family'];
-        $inf->mobile = $request['mobile'];
-        $inf->email = $request['email'];
-        $inf->national_code = $request['national_code'];
-        $inf->psn_id = $request['psn_id'];
+        if ($request['name'])
+            $inf->name = $request['name'];
+        if ($request['family'])
+            $inf->family = $request['family'];
+        if ($request['mobile'])
+            $inf->mobile = $request['mobile'];
+        if ($request['email'])
+            $inf->email = $request['email'];
+        if ($request['national_code'])
+            $inf->national_code = $request['national_code'];
+        if ($request['psn_id'])
+            $inf->psn_id = $request['psn_id'];
 
         $inf->save();
 
@@ -90,7 +96,4 @@ class InfoController extends Controller
         else
             return $inf->toJson();
     }
-
-    public function save(Request $request)
-    { }
 }
