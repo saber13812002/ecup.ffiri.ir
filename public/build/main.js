@@ -681,7 +681,7 @@ var HomePage = (function () {
                     case 0: return [4 /*yield*/, localStorage.getItem('wpIdeaToken')];
                     case 1:
                         wptoken = _a.sent();
-                        this.id = (wptoken ? JSON.parse(wptoken).usr.id : null);
+                        this.id = (wptoken ? JSON.parse(wptoken).usr.id.id : null);
                         this.token = (wptoken ? JSON.parse(wptoken).token : null);
                         if (this.token)
                             this.presentToast("شما لاگین هستید میتوانید ادامه دهید");
@@ -761,10 +761,12 @@ var HomePage = (function () {
             selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="modified()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="modified()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -869,22 +871,12 @@ var Login2Page = (function () {
         return __awaiter(this, void 0, void 0, function () {
             var params;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        console.log('ionViewDidLoad LoginPage');
-                        this.mobile = this.navParams.get('mobile');
-                        this.wpIdeaToken = JSON.parse(localStorage.getItem('wpIdeaToken'));
-                        if (!this.wpIdeaToken) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.validateToken(null)];
-                    case 1:
-                        _a.sent();
-                        _a.label = 2;
-                    case 2:
-                        params = new __WEBPACK_IMPORTED_MODULE_9__angular_http__["d" /* URLSearchParams */](window.location.search);
-                        this.JWT = params.get('jwt');
-                        console.log('jwt :' + this.JWT);
-                        return [2 /*return*/];
-                }
+                console.log('ionViewDidLoad LoginPage');
+                this.mobile = this.navParams.get('mobile');
+                params = new __WEBPACK_IMPORTED_MODULE_9__angular_http__["d" /* URLSearchParams */](window.location.search);
+                this.JWT = params.get('jwt');
+                console.log('jwt :' + this.JWT);
+                return [2 /*return*/];
             });
         });
     };
@@ -1485,8 +1477,7 @@ var RestProvider = (function () {
                 'Content-Type': 'application/x-www-form-urlencoded'
             })
         };
-        var data = "id=" + id
-            + "&password=$2y$10$L5T8g1Zv26zOGyK0bVN7yuc56o.VOLb4lnnP.e4QgFczd2AF.wetK";
+        var data = "id=" + id;
         if (email)
             data += ("&email=" + email);
         if (name)
