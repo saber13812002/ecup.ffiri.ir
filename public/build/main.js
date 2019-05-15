@@ -8,11 +8,11 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_idea_login__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login2_login2__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_language_service_language_service__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__env__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__);
@@ -102,43 +102,16 @@ var LoginPage = (function () {
         return __awaiter(this, void 0, void 0, function () {
             var params;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        console.log('ionViewDidLoad LoginPage');
-                        this.wpIonicToken = JSON.parse(localStorage.getItem('wpIonicToken'));
-                        if (!this.wpIonicToken) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.validateToken(null)];
-                    case 1:
-                        _a.sent();
-                        _a.label = 2;
-                    case 2:
-                        params = new __WEBPACK_IMPORTED_MODULE_10__angular_http__["e" /* URLSearchParams */](window.location.search);
-                        this.JWT = params.get('jwt');
-                        console.log('jwt :' + this.JWT);
-                        return [2 /*return*/];
+                console.log('ionViewDidLoad LoginPage');
+                this.wpIdeaToken = JSON.parse(localStorage.getItem('wpIdeaToken'));
+                if (this.wpIdeaToken) {
+                    //await this.validateToken(null);
+                    this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
                 }
-            });
-        });
-    };
-    LoginPage.prototype.validateToken = function (jwt) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var tok;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        tok = jwt ? jwt : this.wpIonicToken.token;
-                        return [4 /*yield*/, this.restProvider.postTokenValidate(tok).subscribe(function (data) {
-                                console.log(data);
-                                if (data.status == 200) {
-                                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
-                                    return true;
-                                }
-                            })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
+                params = new __WEBPACK_IMPORTED_MODULE_10__angular_http__["d" /* URLSearchParams */](window.location.search);
+                this.JWT = params.get('jwt');
+                console.log('jwt :' + this.JWT);
+                return [2 /*return*/];
             });
         });
     };
@@ -147,24 +120,40 @@ var LoginPage = (function () {
     };
     LoginPage.prototype.login = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var loading;
+            var loading, data;
             return __generator(this, function (_a) {
-                loading = this.loadingCtrl.create({
-                    duration: 500
-                });
-                loading.onDidDismiss(function () {
-                    if (_this.wpIonicToken)
-                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login_idea_login__["a" /* LoginIdeaPage */]);
-                    else
-                        _this.toastController.create({
-                            message: "...",
-                            duration: 2000
+                switch (_a.label) {
+                    case 0:
+                        loading = this.loadingCtrl.create({
+                            duration: 1000
                         });
-                });
-                loading.present();
-                this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
-                return [2 /*return*/];
+                        return [4 /*yield*/, this.callOtp1()];
+                    case 1:
+                        data = _a.sent();
+                        loading.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoginPage.prototype.gotoPinPage = function () {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login2_login2__["a" /* Login2Page */], { mobile: this.mobile });
+    };
+    LoginPage.prototype.callOtp1 = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.restProvider.postOtp1(this.mobile).subscribe(function (data) {
+                            console.log(data);
+                            _this.resultCallOtp1 = data;
+                            return data;
+                        })];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
@@ -188,7 +177,7 @@ var LoginPage = (function () {
             var signupOrSignin, oauthUrl, browser;
             return __generator(this, function (_a) {
                 signupOrSignin = (type == 'signup' ? __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].security.register : __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].security.login);
-                oauthUrl = __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].security.serverUrl + signupOrSignin;
+                oauthUrl = __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].api.baseUrl + signupOrSignin;
                 '?client_id=' + __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].clientId + '&' +
                     'redirect_uri=' + __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].redirectUri + '&' +
                     'response_type=id_token%20token&';
@@ -209,9 +198,6 @@ var LoginPage = (function () {
                 return [2 /*return*/];
             });
         });
-    };
-    LoginPage.prototype.signUpIdea = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login_idea_login__["a" /* LoginIdeaPage */]);
     };
     LoginPage.prototype.signup2 = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -306,7 +292,7 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/'<ion-content padding class="transparent-header">\n  <ion-header>\n    <ion-navbar>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/e/ea/EA_Sports.svg" />\n  <div padding *ngIf="!jwt">\n      <ion-item>\n        لطفا شماره همراه خود را وارد کنید\n      </ion-item>\n    <ion-item>\n      <ion-input [(ngModel)]="mobile" (ionChange)="step1()" [pattern]="patternMobile" type="text" placeholder="موبایل">\n      </ion-input>\n    </ion-item>\n    <button [disabled]="!step1flag" ion-button block outline (click)="signUpIdea()" color="light" class="login-button">{{logintext}}</button>\n  </div>\n</ion-content>\n<ion-footer>\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/'<ion-content padding class="transparent-header">\n  <ion-header>\n    <ion-navbar>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/e/ea/EA_Sports.svg" />\n  <div padding *ngIf="!jwt">\n      <ion-item>\n        لطفا شماره همراه خود را وارد کنید\n      </ion-item>\n    <ion-item>\n      <ion-input [(ngModel)]="mobile" (ionChange)="step1()" [pattern]="patternMobile" type="text" placeholder="موبایل">\n      </ion-input>\n    </ion-item>\n    <button [disabled]="!step1flag" ion-button block outline (click)="login()" color="light" class="login-button">{{logintext}}</button>\n    <button [disabled]="!resultCallOtp1" ion-button block outline (click)="gotoPinPage()" color="light" class="login-button">صفحه ی بعد</button>\n  </div>\n</ion-content>\n<ion-footer>\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -451,7 +437,7 @@ webpackEmptyAsyncContext.id = 168;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__env__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -511,7 +497,7 @@ var AboutPage = (function () {
             var signupOrSignin, oauthUrl, browser;
             return __generator(this, function (_a) {
                 signupOrSignin = (type == 'signup' ? __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].security.register : __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].security.login);
-                oauthUrl = __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].security.serverUrl + signupOrSignin;
+                oauthUrl = __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].security.validate + signupOrSignin;
                 '?client_id=' + __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].clientId + '&' +
                     'redirect_uri=' + __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].redirectUri + '&' +
                     'response_type=id_token%20token&';
@@ -615,7 +601,6 @@ var ContactPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(216);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -664,17 +649,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-
 var HomePage = (function () {
-    function HomePage(navCtrl, restProvider, loadingCtrl, toastController, geolocation) {
+    function HomePage(navCtrl, restProvider, loadingCtrl, toastController) {
         this.navCtrl = navCtrl;
         this.restProvider = restProvider;
         this.loadingCtrl = loadingCtrl;
         this.toastController = toastController;
-        this.geolocation = geolocation;
         this.stories = new Array();
         this.posts = new Array();
         this.token = "";
+        this.data2 = { id: '', family: '', name: '', mobile: '' };
+        this.change = false;
         this.page = 0;
         this.perPage = 10;
         this.totalData = 100;
@@ -693,17 +678,59 @@ var HomePage = (function () {
             var wptoken;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, localStorage.getItem('wpIonicToken')];
+                    case 0: return [4 /*yield*/, localStorage.getItem('wpIdeaToken')];
                     case 1:
                         wptoken = _a.sent();
+                        this.id = (wptoken ? JSON.parse(wptoken).usr.id : null);
                         this.token = (wptoken ? JSON.parse(wptoken).token : null);
                         if (this.token)
-                            this.presentToast("شما لاگین هستید میتوانید کامنت بگذارید");
+                            this.presentToast("شما لاگین هستید میتوانید ادامه دهید");
                         else
-                            this.presentToast("شما به عنوان مهمان وارد شدید و نمیتوانید کامنت بگذارید");
+                            this.presentToast("پین اشتباه است");
+                        return [4 /*yield*/, this.getMe()];
+                    case 2:
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
+        });
+    };
+    HomePage.prototype.getMe = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                this.restProvider.postTokenValidate(this.id, this.email, null, null, null, null, null).subscribe(function (data) {
+                    console.log(data);
+                    if (data.data[0]) {
+                        _this.name = data.data[0].name;
+                        _this.family = data.data[0].family;
+                        _this.mobile = data.data[0].mobile;
+                        _this.email = data.data[0].email;
+                        _this.national_code = data.data[0].national_code;
+                        _this.psn_id = data.data[0].psn_id;
+                    }
+                    return data;
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    HomePage.prototype.modified = function () {
+        this.change = true;
+    };
+    HomePage.prototype.save = function () {
+        var _this = this;
+        this.restProvider.postTokenValidate(this.id, this.email, this.name, this.family, this.mobile, this.national_code, this.psn_id).subscribe(function (data) {
+            console.log(data);
+            if (data.data[0]) {
+                _this.name = data.data[0].name;
+                _this.family = data.data[0].family;
+                _this.mobile = data.data[0].mobile;
+                _this.email = data.data[0].email;
+                _this.national_code = data.data[0].national_code;
+                _this.psn_id = data.data[0].psn_id;
+            }
+            return data;
         });
     };
     HomePage.prototype.doInfinite = function (infiniteScroll) {
@@ -731,34 +758,31 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan">\n  <hr no-margin no-padding>\n  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">\n    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="..."></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="modified()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="modified()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _d || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=home.js.map
 
 /***/ }),
 
-/***/ 217:
+/***/ 216:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginIdeaPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Login2Page; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_language_service_language_service__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__env__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__);
@@ -819,8 +843,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-var LoginIdeaPage = (function () {
-    function LoginIdeaPage(navCtrl, 
+var Login2Page = (function () {
+    function Login2Page(navCtrl, 
         //private cookieService: CookieService,
         loadingCtrl, translate, languageService, toastController, restProvider, iab, navParams) {
         this.navCtrl = navCtrl;
@@ -840,14 +864,15 @@ var LoginIdeaPage = (function () {
         this.languages = this.languageService.getLanguages();
         this.setLanguage();
     }
-    LoginIdeaPage_1 = LoginIdeaPage;
-    LoginIdeaPage.prototype.ionViewDidLoad = function () {
+    Login2Page_1 = Login2Page;
+    Login2Page.prototype.ionViewDidLoad = function () {
         return __awaiter(this, void 0, void 0, function () {
             var params;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         console.log('ionViewDidLoad LoginPage');
+                        this.mobile = this.navParams.get('mobile');
                         this.wpIdeaToken = JSON.parse(localStorage.getItem('wpIdeaToken'));
                         if (!this.wpIdeaToken) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.validateToken(null)];
@@ -855,7 +880,7 @@ var LoginIdeaPage = (function () {
                         _a.sent();
                         _a.label = 2;
                     case 2:
-                        params = new __WEBPACK_IMPORTED_MODULE_9__angular_http__["e" /* URLSearchParams */](window.location.search);
+                        params = new __WEBPACK_IMPORTED_MODULE_9__angular_http__["d" /* URLSearchParams */](window.location.search);
                         this.JWT = params.get('jwt');
                         console.log('jwt :' + this.JWT);
                         return [2 /*return*/];
@@ -863,53 +888,31 @@ var LoginIdeaPage = (function () {
             });
         });
     };
-    LoginIdeaPage.prototype.getToken = function () {
+    Login2Page.prototype.getToken = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
             var token;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.restProvider.postLogin(this.mobile, this.pin).subscribe(function (data) {
                             console.log(data);
                             localStorage.setItem('wpIdeaToken', JSON.stringify(data));
+                            _this.wpIdeaToken = JSON.stringify(data);
                             return data.token;
                         })];
                     case 1:
                         token = _a.sent();
-                        this.wpIdeaToken = localStorage.getItem('wpIdeaToken');
                         return [2 /*return*/];
                 }
             });
         });
     };
-    LoginIdeaPage.prototype.validateToken = function (jwt) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var tok;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        tok = jwt ? jwt : this.wpIdeaToken.token;
-                        return [4 /*yield*/, this.restProvider.postTokenValidate(tok).subscribe(function (data) {
-                                console.log(data);
-                                if (data.status == 200) {
-                                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
-                                    return true;
-                                }
-                            })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    LoginIdeaPage.prototype.textChanged = function () {
+    Login2Page.prototype.textChanged = function () {
         this.step1flag = true;
         this.logintext = "ورود";
     };
-    LoginIdeaPage.prototype.login = function () {
+    Login2Page.prototype.login = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var loading;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -920,35 +923,25 @@ var LoginIdeaPage = (function () {
                         return [4 /*yield*/, this.getToken()];
                     case 1:
                         _a.sent();
-                        loading.onDidDismiss(function () {
-                            if (_this.wpIdeaToken)
-                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
-                            else
-                                _this.toastController.create({
-                                    message: "...",
-                                    duration: 2000
-                                });
-                        });
                         loading.present();
-                        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
                         return [2 /*return*/];
                 }
             });
         });
     };
-    LoginIdeaPage.prototype.createAndSaveNonce = function () {
+    Login2Page.prototype.createAndSaveNonce = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, ""];
             });
         });
     };
-    LoginIdeaPage.prototype.signup = function (type) {
+    Login2Page.prototype.signup = function (type) {
         return __awaiter(this, void 0, void 0, function () {
             var signupOrSignin, oauthUrl, browser;
             return __generator(this, function (_a) {
                 signupOrSignin = (type == 'signup' ? __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].security.register : __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].security.login);
-                oauthUrl = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].security.serverUrl + signupOrSignin;
+                oauthUrl = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].security.login + signupOrSignin;
                 '?client_id=' + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].clientId + '&' +
                     'redirect_uri=' + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].redirectUri + '&' +
                     'response_type=id_token%20token&';
@@ -970,13 +963,16 @@ var LoginIdeaPage = (function () {
             });
         });
     };
-    LoginIdeaPage.prototype.signUpIdea = function () {
-        this.navCtrl.setRoot(LoginIdeaPage_1);
+    Login2Page.prototype.signUpIdea = function () {
+        this.navCtrl.setRoot(Login2Page_1);
     };
-    LoginIdeaPage.prototype.goToFirstPage = function () {
+    Login2Page.prototype.goToFirstPage = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_10__login_login__["a" /* LoginPage */]);
     };
-    LoginIdeaPage.prototype.signup2 = function () {
+    Login2Page.prototype.gotoInfoPage = function () {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
+    };
+    Login2Page.prototype.signup2 = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
@@ -1021,7 +1017,7 @@ var LoginIdeaPage = (function () {
             });
         });
     };
-    LoginIdeaPage.prototype.fetchToken = function (url) {
+    Login2Page.prototype.fetchToken = function (url) {
         var parsedResponse = {};
         if (url) {
             var urlParameter = url.split('#')[1];
@@ -1035,7 +1031,7 @@ var LoginIdeaPage = (function () {
         }
         return parsedResponse;
     };
-    LoginIdeaPage.prototype.buildOAuthUrl = function (state, nonce) {
+    Login2Page.prototype.buildOAuthUrl = function (state, nonce) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.loginUrl +
@@ -1047,7 +1043,7 @@ var LoginIdeaPage = (function () {
             });
         });
     };
-    LoginIdeaPage.prototype.setLanguage = function () {
+    Login2Page.prototype.setLanguage = function () {
         var defaultLanguage = this.translate.getDefaultLang();
         if (this.languageSelected) {
             this.translate.setDefaultLang(this.languageSelected);
@@ -1058,7 +1054,7 @@ var LoginIdeaPage = (function () {
             this.translate.use(defaultLanguage);
         }
     };
-    LoginIdeaPage.prototype.presentToast = function (msg, time) {
+    Login2Page.prototype.presentToast = function (msg, time) {
         if (time === void 0) { time = 2000; }
         var toast = this.toastController.create({
             message: msg,
@@ -1067,7 +1063,7 @@ var LoginIdeaPage = (function () {
         });
         toast.present();
     };
-    LoginIdeaPage.prototype.step1 = function () {
+    Login2Page.prototype.step1 = function () {
         if (this.patternMobile.test(this.mobile)) {
             this.step1flag = true;
         }
@@ -1075,10 +1071,10 @@ var LoginIdeaPage = (function () {
             this.step1flag = false;
         }
     };
-    LoginIdeaPage.prototype.sendPin = function () { };
-    LoginIdeaPage = LoginIdeaPage_1 = __decorate([
+    Login2Page.prototype.sendPin = function () { };
+    Login2Page = Login2Page_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login-idea\login.html"*/'<ion-content padding class="transparent-header">\n  <ion-header>\n    <ion-navbar>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/e/ea/EA_Sports.svg" />\n  <div padding *ngIf="!jwt">\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="goToFirstPage()" color="light"\n      class="login-button">ویرایش مجدد شماره موبایل </button>\n\n    <ion-item>\n      <ion-input [(ngModel)]="pin" (ionChange)="textChanged()" type="number" placeholder="پین"></ion-input>\n    </ion-item>\n    <button *ngIf="step1flag" ion-button block outline (click)="login()" color="light"\n      class="login-button">ورود</button>\n  </div>\n</ion-content>\n<ion-footer>\n  <ion-toolbar class="footer">\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login-idea\login.html"*/,
+            selector: 'page-login2',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/'<ion-content padding class="transparent-header">\n  <ion-header>\n    <ion-navbar>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/e/ea/EA_Sports.svg" />\n  <div padding *ngIf="!jwt">\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="goToFirstPage()" color="light"\n      class="login-button">ویرایش مجدد شماره موبایل </button>\n\n    <ion-item>\n      <ion-input [(ngModel)]="pin" (ionChange)="textChanged()" type="number" placeholder="پین"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="login()" color="light"\n      class="login-button">بررسی</button>\n\n    <button [disabled]="!wpIdeaToken" ion-button block outline (click)="gotoInfoPage()" color="light" class="login-button">صفحه ی بعد</button>\n\n  </div>\n</ion-content>\n<ion-footer>\n  <ion-toolbar class="footer">\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -1089,22 +1085,22 @@ var LoginIdeaPage = (function () {
             __WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__["a" /* RestProvider */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__["a" /* InAppBrowser */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-    ], LoginIdeaPage);
-    return LoginIdeaPage;
-    var LoginIdeaPage_1;
+    ], Login2Page);
+    return Login2Page;
+    var Login2Page_1;
 }());
 
-//# sourceMappingURL=login.js.map
+//# sourceMappingURL=login2.js.map
 
 /***/ }),
 
-/***/ 218:
+/***/ 217:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(237);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1112,7 +1108,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 238:
+/***/ 237:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1123,29 +1119,27 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(283);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_about_about__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_contact_contact__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_tabs_tabs__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ngx_translate_core__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ngx_translate_http_loader__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_language_service_language_service__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login_login__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_login_idea_login__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_status_bar__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_splash_screen__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_rest_rest__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_wp_rest_posts__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_about_about__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_contact_contact__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_home__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ngx_translate_http_loader__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_language_service_language_service__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_login_login__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login2_login2__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_status_bar__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_splash_screen__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_rest_rest__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_wp_rest_posts__ = __webpack_require__(303);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -1172,24 +1166,24 @@ var AppModule = (function () {
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* BerimMasjedApp */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_about_about__["a" /* AboutPage */],
-                __WEBPACK_IMPORTED_MODULE_15__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_16__pages_login_idea_login__["a" /* LoginIdeaPage */],
-                __WEBPACK_IMPORTED_MODULE_9__pages_contact_contact__["a" /* ContactPage */],
-                __WEBPACK_IMPORTED_MODULE_10__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_11__pages_tabs_tabs__["a" /* TabsPage */],
+                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* FifaApp */],
+                __WEBPACK_IMPORTED_MODULE_7__pages_about_about__["a" /* AboutPage */],
+                __WEBPACK_IMPORTED_MODULE_14__pages_login_login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_15__pages_login2_login2__["a" /* Login2Page */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_contact_contact__["a" /* ContactPage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__["a" /* TabsPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* BerimMasjedApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* FifaApp */], {}, {
                     links: []
                 }),
-                __WEBPACK_IMPORTED_MODULE_12__ngx_translate_core__["b" /* TranslateModule */].forRoot({
+                __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__["b" /* TranslateModule */].forRoot({
                     loader: {
-                        provide: __WEBPACK_IMPORTED_MODULE_12__ngx_translate_core__["a" /* TranslateLoader */],
+                        provide: __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__["a" /* TranslateLoader */],
                         useFactory: (createTranslateLoader),
                         deps: [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]]
                     }
@@ -1197,24 +1191,23 @@ var AppModule = (function () {
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* BerimMasjedApp */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_about_about__["a" /* AboutPage */],
-                __WEBPACK_IMPORTED_MODULE_15__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_16__pages_login_idea_login__["a" /* LoginIdeaPage */],
-                __WEBPACK_IMPORTED_MODULE_9__pages_contact_contact__["a" /* ContactPage */],
-                __WEBPACK_IMPORTED_MODULE_10__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_11__pages_tabs_tabs__["a" /* TabsPage */],
+                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* FifaApp */],
+                __WEBPACK_IMPORTED_MODULE_7__pages_about_about__["a" /* AboutPage */],
+                __WEBPACK_IMPORTED_MODULE_14__pages_login_login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_15__pages_login2_login2__["a" /* Login2Page */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_contact_contact__["a" /* ContactPage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__["a" /* TabsPage */],
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_17__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_18__ionic_native_splash_screen__["a" /* SplashScreen */],
-                __WEBPACK_IMPORTED_MODULE_14__providers_language_service_language_service__["a" /* LanguageServiceProvider */],
+                __WEBPACK_IMPORTED_MODULE_16__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_17__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_13__providers_language_service_language_service__["a" /* LanguageServiceProvider */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["c" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_19__providers_rest_rest__["a" /* RestProvider */],
-                __WEBPACK_IMPORTED_MODULE_20__providers_wp_rest_posts__["a" /* PostsProvider */],
-                __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-                __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__["a" /* Geolocation */],
-                __WEBPACK_IMPORTED_MODULE_14__providers_language_service_language_service__["a" /* LanguageServiceProvider */]
+                __WEBPACK_IMPORTED_MODULE_18__providers_rest_rest__["a" /* RestProvider */],
+                __WEBPACK_IMPORTED_MODULE_19__providers_wp_rest_posts__["a" /* PostsProvider */],
+                __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+                __WEBPACK_IMPORTED_MODULE_13__providers_language_service_language_service__["a" /* LanguageServiceProvider */]
             ]
         })
     ], AppModule);
@@ -1222,22 +1215,22 @@ var AppModule = (function () {
 }());
 
 function createTranslateLoader(http) {
-    return new __WEBPACK_IMPORTED_MODULE_13__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, '../assets/i18n/', '.json');
+    return new __WEBPACK_IMPORTED_MODULE_12__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, '../assets/i18n/', '.json');
 }
 //# sourceMappingURL=app.module.js.map
 
 /***/ }),
 
-/***/ 283:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BerimMasjedApp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FifaApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1254,8 +1247,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var BerimMasjedApp = (function () {
-    function BerimMasjedApp(platform, statusBar, splashScreen, translate, config) {
+var FifaApp = (function () {
+    function FifaApp(platform, statusBar, splashScreen, translate, config) {
         var _this = this;
         this.translate = translate;
         this.config = config;
@@ -1275,7 +1268,7 @@ var BerimMasjedApp = (function () {
             });
         });
     }
-    BerimMasjedApp.prototype.initTranslate = function () {
+    FifaApp.prototype.initTranslate = function () {
         var _this = this;
         // Set the default language for translation strings, and the current language.
         this.translate.setDefaultLang('fa');
@@ -1291,7 +1284,7 @@ var BerimMasjedApp = (function () {
             _this.config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
         });
     };
-    BerimMasjedApp = __decorate([
+    FifaApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */],
@@ -1299,15 +1292,15 @@ var BerimMasjedApp = (function () {
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
             __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Config */]])
-    ], BerimMasjedApp);
-    return BerimMasjedApp;
+    ], FifaApp);
+    return FifaApp;
 }());
 
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 304:
+/***/ 303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1336,8 +1329,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var PostsProvider = (function () {
     function PostsProvider(http) {
         this.http = http;
-        this.api_url = __WEBPACK_IMPORTED_MODULE_2__env__["a" /* ENV */].wp_api.baseUrl + __WEBPACK_IMPORTED_MODULE_2__env__["a" /* ENV */].wp_api.posts_url;
-        this.api_url_Zeinabian = __WEBPACK_IMPORTED_MODULE_2__env__["a" /* ENV */].wp_zeinabian_api.baseUrl + __WEBPACK_IMPORTED_MODULE_2__env__["a" /* ENV */].wp_api.posts_url;
+        this.api_url = __WEBPACK_IMPORTED_MODULE_2__env__["a" /* ENV */].api.baseUrl;
+        this.api_url_Zeinabian = __WEBPACK_IMPORTED_MODULE_2__env__["a" /* ENV */].api.baseUrl;
         console.log('Hello QuotesProvider Provider');
     }
     PostsProvider.prototype.getPosts = function (page) {
@@ -1354,7 +1347,7 @@ var PostsProvider = (function () {
             status: 'publish'
         };
         console.log(data);
-        var token = JSON.parse(localStorage.getItem('wpIonicToken')).token;
+        var token = JSON.parse(localStorage.getItem('wpIdeaToken')).token;
         console.log(token);
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]({
             'Content-Type': 'application/json',
@@ -1381,14 +1374,11 @@ var PostsProvider = (function () {
 var ENV = {
     name: "Development",
     api: {
-        baseUrl: 'https://masjedcloob.ir/',
+        baseUrl: 'http://localhost:8000',
     },
-    wp_api: {
-        baseUrl: 'https://masjedcloob.ir/blog',
-        posts_url: '/wp-json/wp/v2/posts',
-    },
-    wp_zeinabian_api: {
-        baseUrl: 'https://zeinabian.ir/',
+    otp_api: {
+        otp1_url: '/api/v1/otp1/',
+        otp2_url: '/api/v1/otp2/',
     },
     webapp: {
         baseUrl: "https://masjedcloob.ir",
@@ -1397,13 +1387,11 @@ var ENV = {
         avatarFolder: "/upload"
     },
     service: {
-        baseUrl: "https://masjedcloob.ir"
+        baseUrl: "https://masjedcloob.ir",
+        getMe: "/api/v1/info/me"
     },
     security: {
-        serverUrl: "https://masjedcloob.ir/blog",
-        //serverUrl: "https://berimbasket.ir",
-        jwtToken: "/wp-json/jwt-auth/v1/token",
-        validate: "/validate",
+        validate: "/api/v1/closed",
         login: "/login",
         register: "/register"
     },
@@ -1430,9 +1418,9 @@ var ENV = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__env__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1461,51 +1449,75 @@ var RestProvider = (function () {
         this.apiFolder = 'api';
         console.log('Hello RestProvider Provider');
     }
-    RestProvider.prototype.getTv = function (page, type) {
-        var q = (type == "mp4") ? "&type=mp4" : ((type == "qavami") ? "&type=qavami" : "");
-        var URL1 = 'https://berimbasket.ir/bball/bots/botTvRadioGet.php?format=json' + q + '&page=' + page + '&$number_of_posts=10';
-        return this.http.get(URL1)
+    RestProvider.prototype.postOtp1 = function (mobile) {
+        var uri = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].api.baseUrl + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].otp_api.otp1_url;
+        var httpOptions = {
+            headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({
+                'Content-Type': 'application/x-www-form-urlencoded' //updated
+            })
+        };
+        var data = "mobile=" + mobile; //updated
+        return this.http.post(uri, data, httpOptions)
             .catch(function (err) {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
         });
     };
     RestProvider.prototype.getRequireOtp = function (phone) {
     };
-    RestProvider.prototype.postLogin = function (username, password) {
-        var uri = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].security.serverUrl + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].security.jwtToken;
-        var data = {
-            username: username,
-            password: password
+    RestProvider.prototype.postLogin = function (mobile, pin) {
+        var uri = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].api.baseUrl + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].otp_api.otp2_url;
+        var httpOptions = {
+            headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({
+                'Content-Type': 'application/x-www-form-urlencoded' //updated
+            })
         };
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        headers.set('Content-Type', 'application/json');
-        return this.http.post(uri, data, { headers: headers })
+        var data = "phone=" + mobile + "&code=" + pin; //updated
+        return this.http.post(uri, data, httpOptions)
             .catch(function (err) {
-            // Do messaging and error handling here
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
         });
     };
-    RestProvider.prototype.postTokenValidate = function (token) {
-        var uri = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].security.serverUrl + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].security.jwtToken + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].security.validate;
-        var header = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Headers */]();
-        header.append('Authorization', 'Bearer ' + token);
-        return this.httpp.post(uri, {}, { headers: header })
-            .catch(this.handleError);
+    RestProvider.prototype.postTokenValidate = function (id, email, name, family, mobile, national_code, psn_id) {
+        var uri = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].api.baseUrl + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].service.getMe;
+        console.log(uri);
+        var httpOptions = {
+            headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        };
+        var data = "id=" + id
+            + "&password=$2y$10$L5T8g1Zv26zOGyK0bVN7yuc56o.VOLb4lnnP.e4QgFczd2AF.wetK";
+        if (email)
+            data += ("&email=" + email);
+        if (name)
+            data += ("&name=" + name);
+        if (family)
+            data += ("&family=" + family);
+        if (mobile)
+            data += ("&mobile=" + mobile);
+        if (national_code)
+            data += ("&national_code=" + national_code);
+        if (psn_id)
+            data += ("&psn_id=" + psn_id);
+        return this.http.post(uri, data, httpOptions)
+            .catch(function (err) {
+            return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
+        });
     };
     RestProvider.prototype.handleError = function (error) {
         var errMsg;
-        if (error instanceof __WEBPACK_IMPORTED_MODULE_0__angular_http__["d" /* Response */]) {
+        if (error instanceof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Response */]) {
             var body = error.json() || '';
             var err = body.error || JSON.stringify(body);
             if (error.status == 403)
-                localStorage.setItem('wpIonicToken', null);
+                localStorage.setItem('wpIdeaToken', null);
         }
         return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(errMsg);
     };
     RestProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]])
+            __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]])
     ], RestProvider);
     return RestProvider;
 }());
@@ -1514,5 +1526,5 @@ var RestProvider = (function () {
 
 /***/ })
 
-},[218]);
+},[217]);
 //# sourceMappingURL=main.js.map

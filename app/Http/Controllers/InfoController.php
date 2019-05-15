@@ -68,8 +68,6 @@ class InfoController extends Controller
     public function me(Request $request)
     {
 
-        $ids = Info::select('id')->where('email', '=', $request['email'])->first();
-
         $inf = Info::find($request['id']);
         $inf->req_time = now();
 

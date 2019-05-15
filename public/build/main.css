@@ -25924,40 +25924,40 @@ page-login .strike > span:after {
   margin-left: 15px;
 }
 
-page-login .toolbar-content,
-page-login span {
+page-login2 .toolbar-content,
+page-login2 span {
   color: white;
 }
 
-page-login .toolbar-background,
-page-login ion-navbar,
-page-login ion-header {
+page-login2 .toolbar-background,
+page-login2 ion-navbar,
+page-login2 ion-header {
   background: transparent !important;
   background-color: transparent !important;
 }
 
-page-login .header-md::after,
-page-login .toolbar-background-ios {
+page-login2 .header-md::after,
+page-login2 .toolbar-background-ios {
   background-image: none;
   border-bottom: 0;
 }
 
-page-login ion-footer {
+page-login2 ion-footer {
   height: 47px;
 }
 
-page-login .footer {
+page-login2 .footer {
   text-align: center;
   background: rgba(255, 255, 255, 0.06);
   min-height: 47px;
 }
 
-page-login .footer-md::before {
+page-login2 .footer-md::before {
   border-top: 1px solid rgba(255, 255, 255, 0.6);
   background-image: none;
 }
 
-page-login ion-content {
+page-login2 ion-content {
   background: linear-gradient(316deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
   background-size: 1800% 1800%;
   -webkit-animation: rainbow 30s linear infinite;
@@ -25976,7 +25976,7 @@ page-login ion-content {
   }
 }
 
-page-login .scroll-content {
+page-login2 .scroll-content {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -25989,14 +25989,14 @@ page-login .scroll-content {
   overflow: hidden;
 }
 
-page-login .logo {
+page-login2 .logo {
   width: 50%;
   height: auto;
   margin: 0 auto;
   padding-top: 50px;
 }
 
-page-login ion-item {
+page-login2 ion-item {
   border-radius: 3px !important;
   padding-left: 10px !important;
   margin-bottom: 15px !important;
@@ -26006,41 +26006,41 @@ page-login ion-item {
   font-size: 0.9em;
 }
 
-page-login ::-webkit-input-placeholder {
+page-login2 ::-webkit-input-placeholder {
   color: white !important;
 }
 
-page-login .item-inner {
+page-login2 .item-inner {
   border-bottom: 0 !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
 
-page-login .login-button {
+page-login2 .login-button {
   text-transform: none;
   border-radius: 3px !important;
 }
 
-page-login ion-icon {
+page-login2 ion-icon {
   padding-right: 10px;
   font-size: 2.2rem;
 }
 
-page-login .strike {
+page-login2 .strike {
   display: block;
   text-align: center;
   overflow: hidden;
   white-space: nowrap;
 }
 
-page-login .strike > span {
+page-login2 .strike > span {
   position: relative;
   display: inline-block;
   font-weight: bold;
 }
 
-page-login .strike > span:before,
-page-login .strike > span:after {
+page-login2 .strike > span:before,
+page-login2 .strike > span:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -26049,12 +26049,12 @@ page-login .strike > span:after {
   background: rgba(255, 255, 255, 0.6);
 }
 
-page-login .strike > span:before {
+page-login2 .strike > span:before {
   right: 100%;
   margin-right: 15px;
 }
 
-page-login .strike > span:after {
+page-login2 .strike > span:after {
   left: 100%;
   margin-left: 15px;
 }
