@@ -35,14 +35,14 @@ Route::get('v1/map/', 'ClinicController@mapapi');
 Route::get('v1/map/{id}', 'ClinicController@mapgetbyid');
 
 
-Route::post('v1/otp1/', 'OtpController@otp1');
+Route::post('v1/otp1/', array('middleware' => 'cors', 'uses' => 'OtpController@otp1'));
 Route::post('v1/requestOtp/', 'OtpController@otp1');
 
-Route::post('v1/otp2/', 'OtpController@otp2');
+Route::post('v1/otp2/', array('middleware' => 'cors', 'uses' => 'OtpController@otp2'));
 Route::post('v1/verifyOtp/', 'OtpController@otp2');
 
 Route::get('v1/info/', 'InfoController@api');
-Route::get('v1/info/{id}', 'InfoController@getbyid');
+//Route::get('v1/info/{id}', 'InfoController@getbyid');
 
 Route::group(['middleware' => ['jwt.verify']], function () {
 
@@ -56,5 +56,9 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     // Route::get('v1/info/', 'InfoController@api');
     // Route::get('v1/info/{id}', 'InfoController@getbyid');
-    Route::post('v1/info/', 'InfoController@post');
+
+    //Route::post('v1/info/', 'InfoController@post');
+
 });
+
+Route::post('v1/info/me', array('middleware' => 'cors', 'uses' => 'InfoController@me'));

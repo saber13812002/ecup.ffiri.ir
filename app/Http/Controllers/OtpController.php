@@ -26,7 +26,7 @@ class OtpController extends Controller
 
     public function otp1(Request $request)
     {
-        $phone = $request->phone;
+        $phone = $request['mobile'];
 
         $rand_no = 0;
         $len = strlen($phone);
@@ -44,7 +44,7 @@ class OtpController extends Controller
 
         if ($rand_no) {
 
-            app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
+            //app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
         } else {
             $rand_no = rand(10000, 99999);
             $otp1 = new Otp;
@@ -53,7 +53,7 @@ class OtpController extends Controller
             $otp1->verified = 0;
             $otp1->save();
             //echo $rand_no;
-            app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
+            //app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
         }
         return json_encode($this->success);
     }
@@ -61,8 +61,8 @@ class OtpController extends Controller
 
     public function otp2(Request $request)
     {
-        $phone = $request->phone;
-        $code = $request->code;
+        $phone = $request['phone'];
+        $code = $request['code'];
 
         $exist = 0;
         $correctToken = 0;
@@ -101,7 +101,14 @@ class OtpController extends Controller
                         return response()->json(['error' => 'could_not_create_token'], 500);
                     }
 
-                    return response()->json(compact('token'));
+                    $usr = [
+                        'name' => $username,
+                        'email' => $email,
+                        'password' => Hash::make($password),
+                    ];
+
+                    return response()->json(compact('usr', 'token'), 201);
+
                 }
                 //not exist sigup
                 else {
@@ -111,9 +118,16 @@ class OtpController extends Controller
                         'password' => Hash::make($password),
                     ]);
 
+
+                    $usr = [
+                        'name' => $username,
+                        'email' => $email,
+                        'password' => Hash::make($password),
+                    ];
+
                     $token = JWTAuth::fromUser($user);
                     //TODO verified = 1
-                    return response()->json(compact('user', 'token'), 201);
+                    return response()->json(compact('usr', 'token'), 201);
                 }
                 return json_encode($this->success);
             } else {

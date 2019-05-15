@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use JWTAuth;
+
 use Illuminate\Http\Request;
 
 use App\Info;
@@ -62,4 +64,47 @@ class InfoController extends Controller
         else
             return $inf->toJson();
     }
+
+    public function me(Request $request)
+    {
+
+        $ids = Info::select('id')->where('email', '=', $request['email'])->first();
+
+
+        if ($ids == null) {
+            $inf = new Info;
+            $inf->req_date = now();
+            $inf->req_time = now();
+            $inf->author_id = 1;
+
+            $inf->save();
+        }
+        else if ($ids != null && ($request['name'] != null || $request['family'] != null)) {
+            $inf = new Info;
+            $inf->req_date = now();
+            $inf->req_time = now();
+            $inf->author_id = 1;
+
+            $inf->email = $request['email'];
+            $inf->name = $request['name'];
+            $inf->family = $request['family'];
+
+            $inf->save();
+        } else {
+
+            $inf = $this->info->where('email', '=', $request['email'])->first();
+        }
+
+        if (1 == 1)
+            return response()->json([
+                'code' => '200',
+                'message' => 'success',
+                "data" => array($inf)
+            ]);
+        else
+            return $inf->toJson();
+    }
+
+    public function save(Request $request)
+    { }
 }
