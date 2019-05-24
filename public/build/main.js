@@ -11,12 +11,12 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login2_login2__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_language_service_language_service__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__env__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_http__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_http__ = __webpack_require__(47);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -86,7 +86,7 @@ var LoginPage = (function () {
         this.navParams = navParams;
         this.patternMobile = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/;
         this.redirectUri = "http://localhost:8100/";
-        this.loginUrl = "https://masjedcloob.ir/blog/jwt.php?client_id=&redirect_uri=&response_type=id_token-token&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbWFzamVkY2xvb2IuaXJcL2Jsb2ciLCJpYXQiOjE1NDk0NjAyMjEsIm5iZiI6MTU0OTQ2MDIyMSwiZXhwIjoxNTUwMDY1MDIxLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxIn19fQ.sbGawBdMFt7jAhn3RIYyxui_er0_XsJ67YRWBtaUUyw";
+        this.loginUrl = "https://ffiri.ir/blog/jwt.php?client_id=&redirect_uri=&response_type=id_token-token&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbWFzamVkY2xvb2IuaXJcL2Jsb2ciLCJpYXQiOjE1NDk0NjAyMjEsIm5iZiI6MTU0OTQ2MDIyMSwiZXhwIjoxNTUwMDY1MDIxLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxIn19fQ.sbGawBdMFt7jAhn3RIYyxui_er0_XsJ67YRWBtaUUyw";
         this.step1flag = false;
         this.logintext = "ارسال کد";
         this.languages = this.languageService.getLanguages();
@@ -108,10 +108,41 @@ var LoginPage = (function () {
                     //await this.validateToken(null);
                     this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
                 }
-                params = new __WEBPACK_IMPORTED_MODULE_10__angular_http__["d" /* URLSearchParams */](window.location.search);
+                params = new __WEBPACK_IMPORTED_MODULE_10__angular_http__["c" /* URLSearchParams */](window.location.search);
                 this.JWT = params.get('jwt');
                 console.log('jwt :' + this.JWT);
                 return [2 /*return*/];
+            });
+        });
+    };
+    LoginPage.prototype.callOtp11 = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var loading, report;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        loading = this.loadingCtrl.create({ content: 'در حال ارسال درخواست به سرور' });
+                        return [4 /*yield*/, loading.present()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.restProvider.getOtp1(this.mobile)];
+                    case 2:
+                        report = _a.sent();
+                        report.subscribe(function (res) {
+                            console.log(res);
+                            _this.resultCallOtp1 = res;
+                            _this.step1flag = false;
+                        }, function (err) {
+                            _this.presentToast('سرور در دسترس نیست!'
+                            // display: 'top',
+                            // color: 'warning'
+                            );
+                            console.log(err);
+                            loading.dismiss();
+                        }, function () { return loading.dismiss(); });
+                        return [2 /*return*/];
+                }
             });
         });
     };
@@ -138,6 +169,25 @@ var LoginPage = (function () {
     };
     LoginPage.prototype.gotoPinPage = function () {
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login2_login2__["a" /* Login2Page */], { mobile: this.mobile });
+    };
+    LoginPage.prototype.login2 = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var loader;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        loader = this.loadingCtrl.create({ content: 'ارسال' });
+                        return [4 /*yield*/, loader.present()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.callOtp11()];
+                    case 2:
+                        _a.sent();
+                        loader.dismiss();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     LoginPage.prototype.callOtp1 = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -182,9 +232,9 @@ var LoginPage = (function () {
                     'redirect_uri=' + __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].redirectUri + '&' +
                     'response_type=id_token%20token&';
                 if (type == 'add')
-                    oauthUrl = 'https://masjedcloob.ir/blog/wp-admin/post-new.php';
+                    oauthUrl = 'https://ffiri.ir/blog/wp-admin/post-new.php';
                 else if (type == 'all')
-                    oauthUrl = 'https://masjedcloob.ir/blog/wp-admin/edit.php';
+                    oauthUrl = 'https://ffiri.ir/blog/wp-admin/edit.php';
                 browser = this.iab.create(oauthUrl, '_blank', 'location=no,clearcache=yes,clearsessioncache=yes,useWideViewPort=yes');
                 browser.on('loadstart').subscribe(function (event) {
                     if ((event.url).indexOf('http://localhost:8100') === 0) {
@@ -292,7 +342,7 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/'<ion-content padding class="transparent-header">\n  <ion-header>\n    <ion-navbar>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/e/ea/EA_Sports.svg" />\n  <div padding *ngIf="!jwt">\n      <ion-item>\n        لطفا شماره همراه خود را وارد کنید\n      </ion-item>\n    <ion-item>\n      <ion-input [(ngModel)]="mobile" (ionChange)="step1()" [pattern]="patternMobile" type="text" placeholder="موبایل">\n      </ion-input>\n    </ion-item>\n    <button [disabled]="!step1flag" ion-button block outline (click)="login()" color="light" class="login-button">{{logintext}}</button>\n    <button [disabled]="!resultCallOtp1" ion-button block outline (click)="gotoPinPage()" color="light" class="login-button">صفحه ی بعد</button>\n  </div>\n</ion-content>\n<ion-footer>\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/'<ion-content padding class="transparent-header">\n  <ion-header>\n    <ion-navbar>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/e/ea/EA_Sports.svg" />\n  <div padding *ngIf="!jwt">\n      <ion-item>\n        لطفا شماره همراه خود را وارد کنید\n      </ion-item>\n    <ion-item>\n      <ion-input [(ngModel)]="mobile" (ionChange)="step1()" [pattern]="patternMobile" type="text" placeholder="موبایل">\n      </ion-input>\n    </ion-item>\n    <button [disabled]="!step1flag" ion-button block outline (click)="login2()" color="light" class="login-button">{{logintext}}</button>\n    <button [disabled]="!resultCallOtp1" ion-button block outline (click)="gotoPinPage()" color="light" class="login-button">صفحه ی بعد</button>\n  </div>\n</ion-content>\n<ion-footer>\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -356,7 +406,7 @@ var TabsPage = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguageServiceProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -502,9 +552,9 @@ var AboutPage = (function () {
                     'redirect_uri=' + __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].redirectUri + '&' +
                     'response_type=id_token%20token&';
                 if (type == 'add')
-                    oauthUrl = 'https://masjedcloob.ir/blog/wp-admin/post-new.php';
+                    oauthUrl = 'https://ffiri.ir/blog/wp-admin/post-new.php';
                 else if (type == 'all')
-                    oauthUrl = 'https://masjedcloob.ir/blog/wp-admin/edit.php';
+                    oauthUrl = 'https://ffiri.ir/blog/wp-admin/edit.php';
                 browser = this.iab.create(oauthUrl, '_blank', 'location=no,clearcache=yes,clearsessioncache=yes,useWideViewPort=yes');
                 browser.on('loadstart').subscribe(function (event) {
                     if ((event.url).indexOf('http://localhost:8100') === 0) {
@@ -540,7 +590,7 @@ var AboutPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__env__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -600,7 +650,7 @@ var ContactPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -681,12 +731,16 @@ var HomePage = (function () {
                     case 0: return [4 /*yield*/, localStorage.getItem('wpIdeaToken')];
                     case 1:
                         wptoken = _a.sent();
-                        this.id = (wptoken ? JSON.parse(wptoken).usr.id.id : null);
+                        // this.id = (wptoken ? JSON.parse(wptoken).usr.id : null);
+                        // this.id2 = (wptoken ? JSON.parse(wptoken).usr.id.id : null);
+                        // if (this.id2)
+                        //   this.id = this.id2;
                         this.token = (wptoken ? JSON.parse(wptoken).token : null);
                         if (this.token)
                             this.presentToast("شما لاگین هستید میتوانید ادامه دهید");
                         else
                             this.presentToast("پین اشتباه است");
+                        this.presentToast("کمی صبر کنید");
                         return [4 /*yield*/, this.getMe()];
                     case 2:
                         _a.sent();
@@ -699,7 +753,7 @@ var HomePage = (function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                this.restProvider.postTokenValidate(this.id, this.email, null, null, null, null, null).subscribe(function (data) {
+                this.restProvider.postTokenValidate(this.token, this.email, null, null, null, null, null).subscribe(function (data) {
                     console.log(data);
                     if (data.data[0]) {
                         _this.name = data.data[0].name;
@@ -708,6 +762,7 @@ var HomePage = (function () {
                         _this.email = data.data[0].email;
                         _this.national_code = data.data[0].national_code;
                         _this.psn_id = data.data[0].psn_id;
+                        _this.presentToast("بارگذاری شد");
                     }
                     return data;
                 });
@@ -720,7 +775,8 @@ var HomePage = (function () {
     };
     HomePage.prototype.save = function () {
         var _this = this;
-        this.restProvider.postTokenValidate(this.id, this.email, this.name, this.family, this.mobile, this.national_code, this.psn_id).subscribe(function (data) {
+        this.presentToast("کمی صبر کنید");
+        this.restProvider.postTokenValidate(this.token, this.email, this.name, this.family, this.mobile, this.national_code, this.psn_id).subscribe(function (data) {
             console.log(data);
             if (data.data[0]) {
                 _this.name = data.data[0].name;
@@ -729,6 +785,7 @@ var HomePage = (function () {
                 _this.email = data.data[0].email;
                 _this.national_code = data.data[0].national_code;
                 _this.psn_id = data.data[0].psn_id;
+                _this.presentToast("ذخیره شد");
             }
             return data;
         });
@@ -758,15 +815,13 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="modified()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="modified()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [disabled]="true" [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="modified()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="modified()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _d || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -783,12 +838,12 @@ var HomePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_language_service_language_service__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__env__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__login_login__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -860,7 +915,7 @@ var Login2Page = (function () {
         this.patternMobile = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/;
         this.patternPin5 = /^\d{5}$/;
         this.redirectUri = "http://localhost:8100/";
-        this.loginUrl = "https://masjedcloob.ir/blog/jwt.php?client_id=&redirect_uri=&response_type=id_token-token&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbWFzamVkY2xvb2IuaXJcL2Jsb2ciLCJpYXQiOjE1NDk0NjAyMjEsIm5iZiI6MTU0OTQ2MDIyMSwiZXhwIjoxNTUwMDY1MDIxLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxIn19fQ.sbGawBdMFt7jAhn3RIYyxui_er0_XsJ67YRWBtaUUyw";
+        this.loginUrl = "https://ffiri.ir/blog/jwt.php?client_id=&redirect_uri=&response_type=id_token-token&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbWFzamVkY2xvb2IuaXJcL2Jsb2ciLCJpYXQiOjE1NDk0NjAyMjEsIm5iZiI6MTU0OTQ2MDIyMSwiZXhwIjoxNTUwMDY1MDIxLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxIn19fQ.sbGawBdMFt7jAhn3RIYyxui_er0_XsJ67YRWBtaUUyw";
         this.step1flag = false;
         this.logintext = "ورود به عنوان مهمان";
         this.languages = this.languageService.getLanguages();
@@ -873,7 +928,7 @@ var Login2Page = (function () {
             return __generator(this, function (_a) {
                 console.log('ionViewDidLoad LoginPage');
                 this.mobile = this.navParams.get('mobile');
-                params = new __WEBPACK_IMPORTED_MODULE_9__angular_http__["d" /* URLSearchParams */](window.location.search);
+                params = new __WEBPACK_IMPORTED_MODULE_9__angular_http__["c" /* URLSearchParams */](window.location.search);
                 this.JWT = params.get('jwt');
                 console.log('jwt :' + this.JWT);
                 return [2 /*return*/];
@@ -921,6 +976,57 @@ var Login2Page = (function () {
             });
         });
     };
+    Login2Page.prototype.login2 = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var loader;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        loader = this.loadingCtrl.create({ content: 'ارسال' });
+                        return [4 /*yield*/, loader.present()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.callOtp22()];
+                    case 2:
+                        _a.sent();
+                        loader.dismiss();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Login2Page.prototype.callOtp22 = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var loading, report;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        loading = this.loadingCtrl.create({ content: 'در حال ارسال درخواست به سرور' });
+                        return [4 /*yield*/, loading.present()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.restProvider.getOtp2(this.mobile, this.pin)];
+                    case 2:
+                        report = _a.sent();
+                        report.subscribe(function (res) {
+                            console.log(res);
+                            localStorage.setItem('wpIdeaToken', JSON.stringify(res));
+                            _this.wpIdeaToken = JSON.stringify(res);
+                            _this.step1flag = false;
+                        }, function (err) {
+                            _this.presentToast('سرور در دسترس نیست!'
+                            // display: 'top',
+                            // color: 'warning'
+                            );
+                            console.log(err);
+                            loading.dismiss();
+                        }, function () { return loading.dismiss(); });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     Login2Page.prototype.createAndSaveNonce = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -938,9 +1044,9 @@ var Login2Page = (function () {
                     'redirect_uri=' + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].redirectUri + '&' +
                     'response_type=id_token%20token&';
                 if (type == 'add')
-                    oauthUrl = 'https://masjedcloob.ir/blog/wp-admin/post-new.php';
+                    oauthUrl = 'https://ffiri.ir/blog/wp-admin/post-new.php';
                 else if (type == 'all')
-                    oauthUrl = 'https://masjedcloob.ir/blog/wp-admin/edit.php';
+                    oauthUrl = 'https://ffiri.ir/blog/wp-admin/edit.php';
                 browser = this.iab.create(oauthUrl, '_blank', 'location=no,clearcache=yes,clearsessioncache=yes,useWideViewPort=yes');
                 browser.on('loadstart').subscribe(function (event) {
                     if ((event.url).indexOf('http://localhost:8100') === 0) {
@@ -1066,7 +1172,7 @@ var Login2Page = (function () {
     Login2Page.prototype.sendPin = function () { };
     Login2Page = Login2Page_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login2',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/'<ion-content padding class="transparent-header">\n  <ion-header>\n    <ion-navbar>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/e/ea/EA_Sports.svg" />\n  <div padding *ngIf="!jwt">\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="goToFirstPage()" color="light"\n      class="login-button">ویرایش مجدد شماره موبایل </button>\n\n    <ion-item>\n      <ion-input [(ngModel)]="pin" (ionChange)="textChanged()" type="number" placeholder="پین"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="login()" color="light"\n      class="login-button">بررسی</button>\n\n    <button [disabled]="!wpIdeaToken" ion-button block outline (click)="gotoInfoPage()" color="light" class="login-button">صفحه ی بعد</button>\n\n  </div>\n</ion-content>\n<ion-footer>\n  <ion-toolbar class="footer">\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/,
+            selector: 'page-login2',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/'<ion-content padding class="transparent-header">\n  <ion-header>\n    <ion-navbar>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/e/ea/EA_Sports.svg" />\n  <div padding *ngIf="!jwt">\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="goToFirstPage()" color="light"\n      class="login-button">ویرایش مجدد شماره موبایل </button>\n\n    <ion-item>\n      <ion-input [(ngModel)]="pin" (ionChange)="textChanged()" type="number" placeholder="پین"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="login2()" color="light"\n      class="login-button">بررسی</button>\n\n    <button [disabled]="!wpIdeaToken" ion-button block outline (click)="gotoInfoPage()" color="light" class="login-button">صفحه ی بعد</button>\n\n  </div>\n</ion-content>\n<ion-footer>\n  <ion-toolbar class="footer">\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -1108,8 +1214,8 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* unused harmony export createTranslateLoader */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(58);
@@ -1124,7 +1230,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login2_login2__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_status_bar__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_splash_screen__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_rest_rest__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_rest_rest__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_wp_rest_posts__ = __webpack_require__(303);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1297,7 +1403,7 @@ var FifaApp = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostsProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__env__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1366,20 +1472,22 @@ var PostsProvider = (function () {
 var ENV = {
     name: "Development",
     api: {
-        baseUrl: 'http://localhost:8000',
+        baseUrl: 'http://ecup.ennings.com',
+        baseUrl2: 'http://laravel:8000',
     },
     otp_api: {
         otp1_url: '/api/v1/otp1/',
+        otp11_url: '/api/v1/otp11/',
         otp2_url: '/api/v1/otp2/',
+        otp22_url: '/api/v1/otp22/',
     },
     webapp: {
-        baseUrl: "https://masjedcloob.ir",
-        //baseUrl: "https://masjedcloob.ir",
+        baseUrl: "https://ffiri.ir",
         socialUrl: "/social",
         avatarFolder: "/upload"
     },
     service: {
-        baseUrl: "https://masjedcloob.ir",
+        baseUrl: "https://ffiri.ir",
         getMe: "/api/v1/info/me"
     },
     security: {
@@ -1398,13 +1506,13 @@ var ENV = {
 
 /***/ }),
 
-/***/ 45:
+/***/ 44:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RestProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
@@ -1424,7 +1532,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 
 
 
@@ -1437,15 +1579,13 @@ var RestProvider = (function () {
     function RestProvider(http, httpp) {
         this.http = http;
         this.httpp = httpp;
-        this.apiUrl = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].api.baseUrl;
-        this.apiFolder = 'api';
         console.log('Hello RestProvider Provider');
     }
     RestProvider.prototype.postOtp1 = function (mobile) {
         var uri = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].api.baseUrl + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].otp_api.otp1_url;
         var httpOptions = {
             headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({
-                'Content-Type': 'application/x-www-form-urlencoded' //updated
+                'Content-Type': 'application/x-www-form-urlencoded',
             })
         };
         var data = "mobile=" + mobile; //updated
@@ -1454,19 +1594,60 @@ var RestProvider = (function () {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
         });
     };
+    RestProvider.prototype.getOtp1 = function (mobile) {
+        return __awaiter(this, void 0, void 0, function () {
+            var url;
+            return __generator(this, function (_a) {
+                url = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].api.baseUrl +
+                    __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].otp_api.otp11_url +
+                    ("?mobile=" + mobile);
+                console.log(url);
+                return [2 /*return*/, this.http
+                        .get(url, {
+                        headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'MyClientCert': '',
+                            'MyToken': '' // This is empty
+                        })
+                    })
+                        .map(function (res) { return res; })];
+            });
+        });
+    };
     RestProvider.prototype.getRequireOtp = function (phone) {
     };
     RestProvider.prototype.postLogin = function (mobile, pin) {
         var uri = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].api.baseUrl + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].otp_api.otp2_url;
         var httpOptions = {
             headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({
-                'Content-Type': 'application/x-www-form-urlencoded' //updated
+                'Content-Type': 'application/x-www-form-urlencoded'
             })
         };
-        var data = "phone=" + mobile + "&code=" + pin; //updated
+        var data = "phone=" + mobile + "&code=" + pin;
         return this.http.post(uri, data, httpOptions)
             .catch(function (err) {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
+        });
+    };
+    RestProvider.prototype.getOtp2 = function (mobile, pin) {
+        return __awaiter(this, void 0, void 0, function () {
+            var url;
+            return __generator(this, function (_a) {
+                url = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].api.baseUrl + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].otp_api.otp22_url +
+                    (mobile + "/" + pin);
+                console.log(url);
+                return [2 /*return*/, this.http
+                        .get(url, {
+                        headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'MyClientCert': '',
+                            'MyToken': '' // This is empty
+                        })
+                    })
+                        .map(function (res) { return res; })];
+            });
         });
     };
     RestProvider.prototype.postTokenValidate = function (id, email, name, family, mobile, national_code, psn_id) {
@@ -1477,7 +1658,7 @@ var RestProvider = (function () {
                 'Content-Type': 'application/x-www-form-urlencoded'
             })
         };
-        var data = "id=" + id;
+        var data = "token=" + id;
         if (email)
             data += ("&email=" + email);
         if (name)
@@ -1494,16 +1675,6 @@ var RestProvider = (function () {
             .catch(function (err) {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
         });
-    };
-    RestProvider.prototype.handleError = function (error) {
-        var errMsg;
-        if (error instanceof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Response */]) {
-            var body = error.json() || '';
-            var err = body.error || JSON.stringify(body);
-            if (error.status == 403)
-                localStorage.setItem('wpIdeaToken', null);
-        }
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(errMsg);
     };
     RestProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["A" /* Injectable */])(),

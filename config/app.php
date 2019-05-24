@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://ecub.ffiri.ir'),
+    'url' => env('APP_URL', 'http://ecup.ennings.com'),
 
     'asset_url' => env('ASSET_URL', null),
 

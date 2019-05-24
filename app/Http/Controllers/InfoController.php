@@ -68,15 +68,15 @@ class InfoController extends Controller
     public function me(Request $request)
     {
 
-        $inf = Info::find($request['id']);
+        $inf = Info::where('token', $request['token'])->first();
         $inf->req_time = now();
 
         if ($request['name'])
             $inf->name = $request['name'];
         if ($request['family'])
             $inf->family = $request['family'];
-        if ($request['mobile'])
-            $inf->mobile = $request['mobile'];
+        // if ($request['mobile'])
+        //     $inf->mobile = $request['mobile'];
         if ($request['email'])
             $inf->email = $request['email'];
         if ($request['national_code'])

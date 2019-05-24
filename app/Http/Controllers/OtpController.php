@@ -30,6 +30,18 @@ class OtpController extends Controller
     {
         $phone = $request['mobile'];
 
+        $this->otp1function($phone);
+    }
+
+    public function otp11get(Request $request)
+    {
+        if ($request->mobile) {
+            return $this->otp1function($request->mobile);
+        }
+    }
+
+    public function otp1function($phone)
+    {
         $rand_no = 0;
         $len = strlen($phone);
 
@@ -60,12 +72,23 @@ class OtpController extends Controller
         return json_encode($this->success);
     }
 
-
     public function otp2(Request $request)
     {
         $phone = $request['phone'];
         $code = $request['code'];
 
+        $this->otp2function($phone, $code);
+    }
+
+    public function otp22get($mobile, $code)
+    {
+        if ($mobile && $code) {
+            return $this->otp2function($mobile, $code);
+        }
+    }
+
+    public function otp2function($phone, $code)
+    {
         $exist = 0;
         $correctToken = 0;
 
@@ -106,11 +129,19 @@ class OtpController extends Controller
                     $ids = User::select('id')->where('email', '=', $email)->first();
 
                     $usr = [
-                        'id' => $ids,
+                        'id' => $ids->id,
                         'name' => $username,
                         'email' => $email,
                         'password' => Hash::make($password),
                     ];
+
+                    $inf = new Info;
+                    $inf->req_date = now();
+                    $inf->req_time = now();
+                    $inf->author_id = $ids->id;
+                    $inf->mobile = $phone;
+                    $inf->token = $token;
+                    $inf->save();
 
                     return response()->json(compact('usr', 'token'), 201);
                 }
@@ -121,12 +152,6 @@ class OtpController extends Controller
                         'email' => $email,
                         'password' => Hash::make($password),
                     ]);
-
-                    $inf = new Info;
-                    $inf->req_date = now();
-                    $inf->req_time = now();
-                    $inf->author_id = $user->id;
-                    $inf->save();
 
                     $usr = [
                         'id' => $user->id,
@@ -139,6 +164,17 @@ class OtpController extends Controller
 
                     $token = JWTAuth::fromUser($user);
                     //TODO verified = 1
+
+
+
+                    $inf = new Info;
+                    $inf->req_date = now();
+                    $inf->req_time = now();
+                    $inf->author_id = $user->id;
+                    $inf->mobile = $phone;
+                    $inf->token = $token;
+                    $inf->save();
+
                     return response()->json(compact('usr', 'token'), 201);
                 }
                 return json_encode($this->success);
@@ -149,7 +185,6 @@ class OtpController extends Controller
             return json_encode($this->notexisttokenhere);
         }
     }
-
 
     private function right10($recipient_no)
     {

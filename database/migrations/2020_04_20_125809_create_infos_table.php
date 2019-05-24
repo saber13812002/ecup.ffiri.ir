@@ -23,6 +23,7 @@ class CreateInfosTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('national_code')->nullable();
             $table->string('psn_id')->nullable();
+            $table->longText('token')->nullable();
 
             $table->date('req_date')->useCurrent = true;
             $table->datetime('req_time')->useCurrent = true;
