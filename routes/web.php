@@ -19,6 +19,10 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::get('/', function() {
+Route::get('/', function () {
     return File::get(public_path() . '/app/index.html');
-  });
+});
+
+Route::get('/payment', 'bankcontroller@payment');
+
+Route::get('/verify', 'bankcontroller@verify');

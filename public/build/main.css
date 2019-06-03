@@ -25722,6 +25722,10 @@ page-home ion-title {
   text-align: center;
 }
 
+page-home .danger {
+  color: red;
+}
+
 page-home .story {
   white-space: nowrap;
   height: 120px;

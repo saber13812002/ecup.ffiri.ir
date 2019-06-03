@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 use Illuminate\Support\Facades\Input;
 use App\Info;
+use App\Pay;
 use DateTime;
 
 class OtpController extends Controller
@@ -58,7 +59,7 @@ class OtpController extends Controller
 
         if ($rand_no) {
 
-            app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
+            //app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
         } else {
             $rand_no = rand(10000, 99999);
             $otp1 = new Otp;
@@ -67,7 +68,7 @@ class OtpController extends Controller
             $otp1->verified = 0;
             $otp1->save();
             //echo $rand_no;
-            app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
+            //app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
         }
         return json_encode($this->success);
     }
@@ -141,7 +142,7 @@ class OtpController extends Controller
                     $inf->author_id = $ids->id;
                     $inf->mobile = $phone;
                     $inf->token = $token;
-                    $inf->save();
+                    //$inf->save();
 
                     return response()->json(compact('usr', 'token'), 201);
                 }
@@ -165,8 +166,6 @@ class OtpController extends Controller
                     $token = JWTAuth::fromUser($user);
                     //TODO verified = 1
 
-
-
                     $inf = new Info;
                     $inf->req_date = now();
                     $inf->req_time = now();
@@ -174,6 +173,10 @@ class OtpController extends Controller
                     $inf->mobile = $phone;
                     $inf->token = $token;
                     $inf->save();
+
+                    $p = new Pay;
+                    $p->author_id = $user->id;
+                    $p->save();
 
                     return response()->json(compact('usr', 'token'), 201);
                 }
