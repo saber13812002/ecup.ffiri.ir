@@ -42,11 +42,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 's3.liara.ir'),
-            'port' => env('DB_PORT', '33085'),
-            'database' => env('DB_DATABASE', 'fifa_laravel_07'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', '2FlzfgIY39BXewhyl2qo6J2j'),
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'fifa_laravel_01'),
+            'username' => env('DB_USERNAME', 'laravel2'),
+            'password' => env('DB_PASSWORD', 'qwertyuiop@1qa'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

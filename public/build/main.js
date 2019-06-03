@@ -818,10 +818,12 @@ var HomePage = (function () {
             selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [disabled]="true" [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="modified()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="modified()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -1472,7 +1474,7 @@ var PostsProvider = (function () {
 var ENV = {
     name: "Development",
     api: {
-        baseUrl: 'http://ecup.ennings.com',
+        baseUrl: 'http://ecupservice.ffiri.ir',
         baseUrl2: 'http://laravel:8000',
     },
     otp_api: {

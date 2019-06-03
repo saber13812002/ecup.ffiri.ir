@@ -80,6 +80,7 @@ class OtpController extends Controller
         $this->otp2function($phone, $code);
     }
 
+    
     public function otp22get($mobile, $code)
     {
         if ($mobile && $code) {
