@@ -161,6 +161,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Kavenegar\Laravel\ServiceProvider::class,
+
 
         /*
          * Package Service Providers...
@@ -231,6 +233,8 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Gateway' => Larautility\Gateway\Gateway::class,
+        'Kavenegar' => Kavenegar\Laravel\Facade::class,
+
     ],
 
 ];

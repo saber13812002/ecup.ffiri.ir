@@ -26,6 +26,13 @@ class OtpController extends Controller
         $this->incorrecttoken = array('status' => 310, 'msg' => "incorrect verification code");
     }
 
+    public function test2()
+    {
+        $phone = "09028693085";
+        $rand_no = "11211";
+        app('App\Http\Controllers\SmsController')->send2($phone, $rand_no);
+    }
+
     public function otp1(Request $request)
     {
         $phone = $request['mobile'];
@@ -58,7 +65,7 @@ class OtpController extends Controller
 
         if ($rand_no) {
 
-            app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
+            app('App\Http\Controllers\SmsController')->send2($phone, $rand_no);
         } else {
             $rand_no = rand(10000, 99999);
             $otp1 = new Otp;
@@ -67,7 +74,7 @@ class OtpController extends Controller
             $otp1->verified = 0;
             $otp1->save();
             //echo $rand_no;
-            app('App\Http\Controllers\SmsController')->send($phone, $rand_no);
+            app('App\Http\Controllers\SmsController')->send2($phone, $rand_no);
         }
         return json_encode($this->success);
     }
@@ -141,7 +148,7 @@ class OtpController extends Controller
                     $inf->author_id = $ids->id;
                     $inf->mobile = $phone;
                     $inf->token = $token;
-                    $inf->save();
+                    //$inf->save();
 
                     return response()->json(compact('usr', 'token'), 201);
                 }
