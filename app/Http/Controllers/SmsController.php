@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Kavenegar;
+use App\Smslog;
 
 class SmsController extends Controller
 {
@@ -43,6 +45,51 @@ class SmsController extends Controller
             //echo $response;
             //TODO: send error or  log or telegram or email or all
             return true;
+        }
+    }
+
+    public function send2($mobile_number, $rand_no)
+    {
+        try {
+            $sender = "10004346";
+            $message = "با سلام.
+ecup خوش آمدید
+کد فعالسازی شما
+" . $rand_no;
+            $receptor = array($mobile_number);
+            $template = "FifaVerificationCode";
+            $token = $rand_no;
+            //$result = Kavenegar::Verify($template, $receptor, $token);
+            $result = Kavenegar::Send($sender, $receptor, $message);
+            if ($result) {
+                foreach ($result as $r) {
+                    // echo "messageid = $r->messageid";
+                    // echo "message = $r->message";
+                    // echo "status = $r->status";
+                    // echo "statustext = $r->statustext";
+                    // echo "sender = $r->sender";
+                    // echo "receptor = $r->receptor";
+                    // echo "date = $r->date";
+                    // echo "cost = $r->cost";
+
+                    $inf = new Smslog;
+                    $inf->messageid = $r->messageid;
+                    $inf->message = $r->message;
+                    $inf->status =  $r->status;
+                    $inf->statustext = $r->statustext;
+                    $inf->sender = $r->sender;
+                    $inf->receptor = $r->receptor;
+                    $inf->date = $r->date;
+                    $inf->cost = $r->cost;
+                    $inf->save();
+                }
+            }
+        } catch (\Kavenegar\Exceptions\ApiException $e) {
+            // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
+            echo $e->errorMessage();
+        } catch (\Kavenegar\Exceptions\HttpException $e) {
+            // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
+            echo $e->errorMessage();
         }
     }
 }

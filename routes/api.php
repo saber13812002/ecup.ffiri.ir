@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::post('v1/otp1/', array('middleware' => 'cors', 'uses' => 'OtpController@otp1'));
 Route::get('v1/otp11/', array('middleware' => 'cors', 'uses' => 'OtpController@otp11get'));
 Route::post('v1/requestOtp/', 'OtpController@otp1');
+//Route::get('v1/otptest2/', array('middleware' => 'cors', 'uses' => 'OtpController@test2'));
 
 Route::post('v1/otp2/', array('middleware' => 'cors', 'uses' => 'OtpController@otp2'));
 Route::get('v1/otp22/{mobile}/{code}', array('middleware' => 'cors', 'uses' => 'OtpController@otp22get'));
