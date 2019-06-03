@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pay;
 
 class BankController extends Controller
 {
@@ -19,7 +20,7 @@ class BankController extends Controller
                 ->ready();
 
             $refId =  $gateway->refId(); // شماره ارجاع بانک
-            $transID = $gateway->transactionId(); // شماره تراکنش
+            $transId = $gateway->transactionId(); // شماره تراکنش
 
             $gateway->setCallback(url('/verify' . '/' . $transID . '/' . $refId)); //You can also change the callback
 
@@ -28,7 +29,13 @@ class BankController extends Controller
             //  شماره تراکنش  بانک را با توجه به نوع ساختار دیتابیس تان
             //  در جداول مورد نیاز و بسته به نیاز سیستم تان
             // ذخیره کنید .
-            $pay = \App\pay;
+
+            $pay = Pay::where('author_id', $request['author_id'])->first();
+
+            $pay->refId = $refId;
+            $pay->transId = $transId;
+            $pay->result = "GoToPay";
+            $pay->save();
 
             return $gateway->redirect();
         } catch (\Exception $e) {
@@ -45,6 +52,14 @@ class BankController extends Controller
             $trackingCode = $gateway->trackingCode();
             $refId = $gateway->refId();
             $cardNumber = $gateway->cardNumber();
+
+            $pay = Pay::where('refId', $refId)->first();
+            $pay->trackingCode = $trackingCode;
+            $pay->cardNumber = $cardNumber;
+            $pay->result = "Payed";
+            $pay->save();
+
+
 
             // تراکنش با موفقیت سمت بانک تایید گردید
             // در این مرحله عملیات خرید کاربر را تکمیل میکنیم

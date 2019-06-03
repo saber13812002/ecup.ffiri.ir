@@ -18,7 +18,11 @@ class CreateInfosTable extends Migration
             $table->integer('author_id')->nullable();
 
             $table->string('refId')->nullable();
-            $table->string('transactionId')->nullable();
+            $table->string('transId')->nullable();
+
+            $table->string('trackingCode')->nullable();
+            $table->string('cardNumber')->nullable();
+
             $table->string('result')->nullable();
             $table->timestamps();
         });
