@@ -10,7 +10,7 @@ class BankController extends Controller
     {
         try {
 
-            $gateway = \Gateway::make(new \Mellat());
+            $gateway = \Gateway::mellat();
 
             $gateway
                 ->price(1000)
