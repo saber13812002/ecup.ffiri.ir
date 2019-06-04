@@ -23,6 +23,6 @@ Route::get('/', function () {
     return File::get(public_path() . '/app/index.html');
 });
 
-Route::get('/payment', 'bankcontroller@payment');
+Route::get('/payment', 'BankController@payment');
 
-Route::get('/verify', 'bankcontroller@verify');
+Route::get('/verify', 'BankController@verify');

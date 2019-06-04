@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pay;
+//use Gateway\Mellat;
 
 class BankController extends Controller
 {
@@ -22,7 +23,7 @@ class BankController extends Controller
             $refId =  $gateway->refId(); // شماره ارجاع بانک
             $transId = $gateway->transactionId(); // شماره تراکنش
 
-            $gateway->setCallback(url('/verify' . '/' . $transID . '/' . $refId)); //You can also change the callback
+            $gateway->setCallback(url('/verify' . '/' . $transId . '/' . $refId)); //You can also change the callback
 
 
             // در اینجا
