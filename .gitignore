@@ -2,7 +2,8 @@
 # Edit at https://www.gitignore.io/?templates=laravel,phpstorm
 
 ### Laravel ###
-/vendor/
+/vendor/*
+!/vendor/larautility/
 node_modules/
 npm-debug.log
 yarn-error.log
