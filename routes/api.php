@@ -24,6 +24,8 @@ Route::post('v1/verifyOtp/', 'OtpController@otp2');
 
 Route::post('v1/info/me', array('middleware' => 'cors', 'uses' => 'InfoController@me'));
 
+Route::post('v1/pay', array('middleware' => 'cors', 'uses' => 'InfoController@pay'));
+
 Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::get('v1/user/', 'UserController@getAuthenticatedUser');

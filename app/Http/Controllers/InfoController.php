@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Info;
 use App\InfoView;
 
+use App\Pay;
+
 class InfoController extends Controller
 {
     private $infoView;
@@ -95,5 +97,21 @@ class InfoController extends Controller
             ]);
         else
             return $inf->toJson();
+    }
+    public function pay(Request $request)
+    {
+
+        //$inf = Pay::where('token', $request['token'])->first();
+        $p = Pay::where('author_id', $request['author_id'])->first();
+
+
+        if (1 == 1)
+            return response()->json([
+                'code' => '200',
+                'message' => 'success',
+                "data" => array($p)
+            ]);
+        else
+            return $p->toJson();
     }
 }

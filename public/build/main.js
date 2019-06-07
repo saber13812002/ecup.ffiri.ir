@@ -11,7 +11,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login2_login2__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_language_service_language_service__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__env__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__(112);
@@ -103,8 +103,8 @@ var LoginPage = (function () {
             var params;
             return __generator(this, function (_a) {
                 console.log('ionViewDidLoad LoginPage');
-                this.wpIdeaToken = JSON.parse(localStorage.getItem('wpIdeaToken'));
-                if (this.wpIdeaToken) {
+                this.wpIdeaTokenECUP = JSON.parse(localStorage.getItem('wpIdeaTokenECUP'));
+                if (this.wpIdeaTokenECUP) {
                     //await this.validateToken(null);
                     this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
                 }
@@ -489,6 +489,7 @@ webpackEmptyAsyncContext.id = 168;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__env__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_rest_rest__ = __webpack_require__(33);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -537,20 +538,60 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var AboutPage = (function () {
-    function AboutPage(iab, navCtrl) {
+    function AboutPage(iab, navCtrl, restProvider, toastController) {
         this.iab = iab;
         this.navCtrl = navCtrl;
+        this.restProvider = restProvider;
+        this.toastController = toastController;
     }
+    AboutPage.prototype.ionViewDidLoad = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var wptoken;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, localStorage.getItem('wpIdeaTokenECUP')];
+                    case 1:
+                        wptoken = _a.sent();
+                        this.id = (wptoken ? JSON.parse(wptoken).usr.id : null);
+                        this.token = (wptoken ? JSON.parse(wptoken).token : null);
+                        this.presentToast("کمی صبر کنید");
+                        return [4 /*yield*/, this.getMePay()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AboutPage.prototype.getMePay = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                this.restProvider.postTokenGetPayStatus(this.id, this.token).subscribe(function (data) {
+                    console.log(data);
+                    if (data.data[0]) {
+                        _this.status = data.data[0].result;
+                        _this.cardNumber = data.data[0].cardNumber;
+                        _this.refId = data.data[0].refId;
+                        _this.trackingCode = data.data[0].trackingCode;
+                        _this.transId = data.data[0].transId;
+                        _this.presentToast("بارگذاری شد");
+                    }
+                    return data;
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
     AboutPage.prototype.signup = function (type) {
         return __awaiter(this, void 0, void 0, function () {
             var signupOrSignin, oauthUrl, browser;
             return __generator(this, function (_a) {
                 signupOrSignin = (type == 'signup' ? __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].security.register : __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].security.login);
-                oauthUrl = __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].security.validate + signupOrSignin;
-                '?client_id=' + __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].clientId + '&' +
-                    'redirect_uri=' + __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].redirectUri + '&' +
-                    'response_type=id_token%20token&';
+                oauthUrl = __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].api.baseUrl + __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].service.payment +
+                    '?author_id=' + this.id;
                 if (type == 'add')
                     oauthUrl = 'https://ffiri.ir/blog/wp-admin/post-new.php';
                 else if (type == 'all')
@@ -569,12 +610,24 @@ var AboutPage = (function () {
             });
         });
     };
+    AboutPage.prototype.presentToast = function (msg, time) {
+        if (time === void 0) { time = 2000; }
+        var toast = this.toastController.create({
+            message: msg,
+            duration: time,
+            position: "top"
+        });
+        toast.present();
+    };
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-about',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\about\about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      پرداخت بانکی\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  پرداخت بانکی\n  <button ion-button block clear (click)="signup(\'signup\')" color="dark" class="login-button">\n    <ion-icon name="logo-eeta"></ion-icon> پرداخت بانکی\n  </button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\about\about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\about\about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      پرداخت بانکی\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  پرداخت بانکی\n  <button ion-button block clear (click)="signup(\'signup\')" color="dark" class="login-button">\n    <ion-icon name="logo-eeta"></ion-icon> پرداخت بانکی\n  </button>\n\n  <ion-item *ngIf="status == \'Payed\'">\n  پرداخت شما قبلا انجام شده است\n<br>\n  شماره کارت\n  {{cardNumber}}\n  <br>\n  شماره مرجع\n  {{refId}}\n  <br>\n  شماره پیگیری\n  {{trackingCode}}\n  <br>\n  شماره تراکنش\n  {{transId}}\n\n  </ion-item>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\about\about.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_4__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_rest_rest__["a" /* RestProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
     ], AboutPage);
     return AboutPage;
 }());
@@ -590,7 +643,7 @@ var AboutPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__env__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -650,7 +703,7 @@ var ContactPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(33);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -705,10 +758,13 @@ var HomePage = (function () {
         this.restProvider = restProvider;
         this.loadingCtrl = loadingCtrl;
         this.toastController = toastController;
+        this.patternNationalCode = /^\d{10}$/;
         this.stories = new Array();
         this.posts = new Array();
         this.token = "";
         this.data2 = { id: '', family: '', name: '', mobile: '' };
+        this.flagPSN = true;
+        this.flagNID = true;
         this.change = false;
         this.page = 0;
         this.perPage = 10;
@@ -728,7 +784,7 @@ var HomePage = (function () {
             var wptoken;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, localStorage.getItem('wpIdeaToken')];
+                    case 0: return [4 /*yield*/, localStorage.getItem('wpIdeaTokenECUP')];
                     case 1:
                         wptoken = _a.sent();
                         // this.id = (wptoken ? JSON.parse(wptoken).usr.id : null);
@@ -773,6 +829,34 @@ var HomePage = (function () {
     HomePage.prototype.modified = function () {
         this.change = true;
     };
+    HomePage.prototype.checkNID = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                this.modified();
+                if (this.patternNationalCode.test(this.national_code) && this.checkCodeMeli(this.national_code)) {
+                    this.flagNID = true;
+                }
+                else {
+                    this.flagNID = false;
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    HomePage.prototype.checkPSN = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                this.modified();
+                if ((this.psn_id)) {
+                    this.flagPSN = true;
+                }
+                else {
+                    this.flagPSN = false;
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
     HomePage.prototype.save = function () {
         var _this = this;
         this.presentToast("کمی صبر کنید");
@@ -813,9 +897,31 @@ var HomePage = (function () {
         });
         toast.present();
     };
+    HomePage.prototype.checkCodeMeli = function (input) {
+        if (!/^\d{10}$/.test(input)
+            || input == '0000000000'
+            || input == '1111111111'
+            || input == '2222222222'
+            || input == '3333333333'
+            || input == '4444444444'
+            || input == '5555555555'
+            || input == '6666666666'
+            || input == '7777777777'
+            || input == '8888888888'
+            || input == '9999999999')
+            return false;
+        var check = parseInt(input[9]);
+        var sum = 0;
+        var i;
+        for (i = 0; i < 9; ++i) {
+            sum += parseInt(input[i]) * (10 - i);
+        }
+        sum %= 11;
+        return (sum < 2 && check == sum) || (sum >= 2 && check + sum == 11);
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [disabled]="true" [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="modified()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="modified()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [disabled]="true" [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="checkNID()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagNID">\n      لطفا عدد کدملی خود را کامل و صحیح وارد کنید\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="checkPSN()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagPSN">\n      لطفا آی دی را وارد کنید\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -840,7 +946,7 @@ var HomePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_language_service_language_service__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__env__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__ = __webpack_require__(112);
@@ -945,8 +1051,8 @@ var Login2Page = (function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.restProvider.postLogin(this.mobile, this.pin).subscribe(function (data) {
                             console.log(data);
-                            localStorage.setItem('wpIdeaToken', JSON.stringify(data));
-                            _this.wpIdeaToken = JSON.stringify(data);
+                            localStorage.setItem('wpIdeaTokenECUP', JSON.stringify(data));
+                            _this.wpIdeaTokenECUP = JSON.stringify(data);
                             return data.token;
                         })];
                     case 1:
@@ -1013,8 +1119,8 @@ var Login2Page = (function () {
                         report = _a.sent();
                         report.subscribe(function (res) {
                             console.log(res);
-                            localStorage.setItem('wpIdeaToken', JSON.stringify(res));
-                            _this.wpIdeaToken = JSON.stringify(res);
+                            localStorage.setItem('wpIdeaTokenECUP', JSON.stringify(res));
+                            _this.wpIdeaTokenECUP = JSON.stringify(res);
                             _this.step1flag = false;
                         }, function (err) {
                             _this.presentToast('سرور در دسترس نیست!'
@@ -1174,7 +1280,7 @@ var Login2Page = (function () {
     Login2Page.prototype.sendPin = function () { };
     Login2Page = Login2Page_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login2',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/'<ion-content padding class="transparent-header">\n  <ion-header>\n    <ion-navbar>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/e/ea/EA_Sports.svg" />\n  <div padding *ngIf="!jwt">\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="goToFirstPage()" color="light"\n      class="login-button">ویرایش مجدد شماره موبایل </button>\n\n    <ion-item>\n      <ion-input [(ngModel)]="pin" (ionChange)="textChanged()" type="number" placeholder="پین"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="login2()" color="light"\n      class="login-button">بررسی</button>\n\n    <button [disabled]="!wpIdeaToken" ion-button block outline (click)="gotoInfoPage()" color="light" class="login-button">صفحه ی بعد</button>\n\n  </div>\n</ion-content>\n<ion-footer>\n  <ion-toolbar class="footer">\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/,
+            selector: 'page-login2',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/'<ion-content padding class="transparent-header">\n  <ion-header>\n    <ion-navbar>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/e/ea/EA_Sports.svg" />\n  <div padding *ngIf="!jwt">\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="goToFirstPage()" color="light"\n      class="login-button">ویرایش مجدد شماره موبایل </button>\n\n    <ion-item>\n      <ion-input [(ngModel)]="pin" (ionChange)="textChanged()" type="number" placeholder="پین"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="login2()" color="light"\n      class="login-button">بررسی</button>\n\n    <button [disabled]="!wpIdeaTokenECUP" ion-button block outline (click)="gotoInfoPage()" color="light" class="login-button">صفحه ی بعد</button>\n\n  </div>\n</ion-content>\n<ion-footer>\n  <ion-toolbar class="footer">\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -1232,7 +1338,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login2_login2__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_status_bar__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_splash_screen__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_rest_rest__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_rest_rest__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_wp_rest_posts__ = __webpack_require__(303);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1447,7 +1553,7 @@ var PostsProvider = (function () {
             status: 'publish'
         };
         console.log(data);
-        var token = JSON.parse(localStorage.getItem('wpIdeaToken')).token;
+        var token = JSON.parse(localStorage.getItem('wpIdeaTokenECUP')).token;
         console.log(token);
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]({
             'Content-Type': 'application/json',
@@ -1490,7 +1596,9 @@ var ENV = {
     },
     service: {
         baseUrl: "https://ffiri.ir",
-        getMe: "/api/v1/info/me"
+        getMe: "/api/v1/info/me",
+        getMePay: "/api/v1/pay",
+        payment: "/payment"
     },
     security: {
         validate: "/api/v1/closed",
@@ -1508,7 +1616,7 @@ var ENV = {
 
 /***/ }),
 
-/***/ 44:
+/***/ 33:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1673,6 +1781,22 @@ var RestProvider = (function () {
             data += ("&national_code=" + national_code);
         if (psn_id)
             data += ("&psn_id=" + psn_id);
+        return this.http.post(uri, data, httpOptions)
+            .catch(function (err) {
+            return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
+        });
+    };
+    RestProvider.prototype.postTokenGetPayStatus = function (author_id, token) {
+        var uri = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].api.baseUrl + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].service.getMePay;
+        console.log(uri);
+        var httpOptions = {
+            headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        };
+        var data = "author_id=" + author_id;
+        if (token)
+            data += ("&token=" + token);
         return this.http.post(uri, data, httpOptions)
             .catch(function (err) {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);

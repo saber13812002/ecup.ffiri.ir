@@ -23,4 +23,9 @@ Route::get('/', function () {
     return File::get(public_path() . '/app/index.html');
 });
 
-Route::get('/payment', 'bankcontroller@payment');
+Route::get('/payment', 'BankController@payment');
+
+
+Route::any('/verifypayment', 'BankController@verifypayment');
+//Route::get('/verifypayment', 'BankController@verifypayment');
+//Route::post('/verifypayment', 'BankController@verifypayment');

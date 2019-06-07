@@ -10,6 +10,7 @@ use JWTAuth;
 use Illuminate\Support\Facades\Input;
 use App\Info;
 use DateTime;
+use App\Pay;
 
 class OtpController extends Controller
 {
@@ -142,14 +143,17 @@ class OtpController extends Controller
                         'password' => Hash::make($password),
                     ];
 
-                    $inf = new Info;
+                    //$inf = new Info;
+                    $inf = Info::where('author_id', $ids->id)->first();
                     $inf->req_date = now();
                     $inf->req_time = now();
-                    $inf->author_id = $ids->id;
-                    $inf->mobile = $phone;
-                    $inf->token = $token;
-                    //$inf->save();
+                    //$inf->author_id = $ids->id;
+                    //$inf->mobile = $phone;
+                    $inf->save();
 
+                    
+                    $token = $inf->token;
+                
                     return response()->json(compact('usr', 'token'), 201);
                 }
                 //not exist sigup
@@ -181,6 +185,10 @@ class OtpController extends Controller
                     $inf->mobile = $phone;
                     $inf->token = $token;
                     $inf->save();
+
+                    $p = new Pay;
+                    $p->author_id = $user->id;
+                    $p->save();
 
                     return response()->json(compact('usr', 'token'), 201);
                 }
