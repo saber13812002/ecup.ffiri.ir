@@ -86,9 +86,8 @@ abstract class PortAbstract
 	}
 
 	/** bootstraper */
-	function boot(){
-
-	}
+	function boot()
+	{ }
 
 	function setConfig($config)
 	{
@@ -98,7 +97,7 @@ abstract class PortAbstract
 	/**
 	 * @return mixed
 	 */
-	function getTable() 
+	function getTable()
 	{
 		return $this->db->table($this->config->get('gateway.table'));
 	}
@@ -138,7 +137,7 @@ abstract class PortAbstract
 	 *
 	 * @return void
 	 */
-	function setCustomDesc ($description)
+	function setCustomDesc($description)
 	{
 		$this->description = $description;
 	}
@@ -148,7 +147,7 @@ abstract class PortAbstract
 	 *
 	 * @return string | null
 	 */
-	function getCustomDesc ()
+	function getCustomDesc()
 	{
 		return $this->description;
 	}
@@ -227,29 +226,29 @@ abstract class PortAbstract
 
 	function getTimeId2()
 	{
-		$genuid = function(){
-			return substr(str_pad(str_replace('.','', microtime(true)),12,0),2,12);
+		$genuid = function () {
+			return substr(str_pad(str_replace('.', '', microtime(true)), 12, 0), 2, 12);
 		};
-		$uid=$genuid();
+		$uid = $genuid();
 		while ($this->getTable()->whereId($uid)->first())
 			$uid = $genuid();
 		return $uid;
 	}
-
-    function getTimeId()
-    {
-        $genuid = function () {
-            return time();
-            //return microtime(true);
-        };
-        $uid = $genuid();
-        while ($this->getTable()->whereId($uid)->exists()) {
-            sleep(0.5);
-            $uid = $genuid();
-        }
-        return $uid;
+	//
+	function getTimeId()
+	{
+		$genuid = function () {
+			return time();
+			//return microtime(true);
+		};
+		$uid = $genuid();
+		while ($this->getTable()->whereId($uid)->exists()) {
+			sleep(0.5);
+			$uid = $genuid();
+		}
+		return $uid;
 	}
-	
+
 	/**
 	 * Insert new transaction to poolport_transactions table
 	 *
@@ -315,7 +314,6 @@ abstract class PortAbstract
 			'ref_id' => $this->refId,
 			'updated_at' => Carbon::now(),
 		]);
-
 	}
 
 	/**
@@ -366,9 +364,7 @@ abstract class PortAbstract
 			$query_array = $changes;
 		}
 
-		return (!empty($url_array['scheme']) ? $url_array['scheme'] . '://' : null) .
-		(!empty($url_array['host']) ? $url_array['host'] : null) .
-		(!empty($url_array['port']) ? ':' . $url_array['port'] : null) .
-		$url_array['path'] . '?' . http_build_query($query_array);
+		return (!empty($url_array['scheme']) ? $url_array['scheme'] . '://' : null) . (!empty($url_array['host']) ? $url_array['host'] : null) . (!empty($url_array['port']) ? ':' . $url_array['port'] : null) .
+			$url_array['path'] . '?' . http_build_query($query_array);
 	}
 }

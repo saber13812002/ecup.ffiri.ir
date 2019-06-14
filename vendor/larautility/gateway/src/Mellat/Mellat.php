@@ -123,7 +123,7 @@ class Mellat extends PortAbstract implements PortInterface
 			$soap = new SoapClient($this->serverUrl,  [
 				'stream_context' => $context
 			]);
-
+			//
 			//$soap = new \SoapClient($this->serverUrl);
 			$response = $soap->bpPayRequest($fields);
 		} catch (\SoapFault $e) {
@@ -199,7 +199,7 @@ class Mellat extends PortAbstract implements PortInterface
 			$soap = new SoapClient($this->serverUrl,  [
 				'stream_context' => $context
 			]);
-//
+			//
 			//$soap = new SoapClient($this->serverUrl);
 			$response = $soap->bpVerifyRequest($fields);
 		} catch (\SoapFault $e) {
@@ -251,7 +251,7 @@ class Mellat extends PortAbstract implements PortInterface
 			$soap = new SoapClient($this->serverUrl,  [
 				'stream_context' => $context
 			]);
-
+			//
 			//$soap = new SoapClient($this->serverUrl);
 			$response = $soap->bpSettleRequest($fields);
 		} catch (\SoapFault $e) {
