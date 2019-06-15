@@ -25722,8 +25722,112 @@ page-home ion-title {
   text-align: center;
 }
 
+page-home .toolbar-title {
+  margin-top: 41px;
+}
+
+page-home .toolbar-content {
+  margin-top: -43px;
+}
+
+page-home .toolbar-background,
+page-home .item-inner,
+page-home .item,
+page-home .tabber,
+page-home .tabs,
+page-home .item-complex,
+page-home .item-content,
+page-home .scroll-content,
+page-home ion-input,
+page-home ion-item {
+  background-image: url(http://ecupservice.ffiri.ir/images/texture.png);
+  background-repeat: repeat;
+}
+
+page-home .scroll-content {
+  margin-top: 174px;
+  margin-bottom: 56px;
+}
+
+page-home .toolbar-title,
+page-home .toolbar-title-md,
+page-home .text-input,
+page-home .text-input-md,
+page-home .white {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+page-home .navigation {
+  float: right;
+  direction: rtl;
+}
+
+page-home .navigation a {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  font-weight: 700;
+  margin-left: 40px;
+  text-transform: uppercase;
+}
+
+page-home .white {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+page-home ul,
+page-home ol {
+  margin: 0;
+  padding: 0;
+}
+
+page-home ul {
+  display: block;
+  list-style-type: disc;
+  -webkit-margin-before: 1em;
+  margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+  margin-block-end: 1em;
+  -webkit-margin-start: 0px;
+  -moz-margin-start: 0px;
+  margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+  -moz-margin-end: 0px;
+  margin-inline-end: 0px;
+  -webkit-padding-start: 40px;
+  -moz-padding-start: 40px;
+  padding-inline-start: 40px;
+}
+
+page-home .footer {
+  text-align: center;
+}
+
+page-home .footer-top {
+  background-color: #594aac;
+  padding-top: 50px;
+}
+
+page-home body {
+  font-family: yekan, byekan;
+  font-weight: 400;
+  color: #6c7279;
+}
+
+page-home .navigation li {
+  display: inline-block;
+}
+
+page-home ul li {
+  list-style: none;
+  margin-left: 20px;
+}
+
 page-home .danger {
   color: red;
+}
+
+page-home .toolbar {
+  height: 100px;
 }
 
 page-home .story {
@@ -25815,7 +25919,8 @@ page-login .footer-md::before {
 }
 
 page-login ion-content {
-  background: linear-gradient(316deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-image: url(http://ecupservice.ffiri.ir/images/texture.png);
+  background-repeat: repeat;
   background-size: 1800% 1800%;
   -webkit-animation: rainbow 30s linear infinite;
   animation: rainbow 30s linear infinite;
@@ -25863,6 +25968,72 @@ page-login .logo {
   height: auto;
   margin: 0 auto;
   padding-top: 50px;
+  max-width: 200px;
+}
+
+page-login .navigation {
+  float: right;
+  direction: rtl;
+}
+
+page-login .navigation a {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  font-weight: 700;
+  margin-left: 40px;
+  text-transform: uppercase;
+}
+
+page-login .white {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+page-login ul,
+page-login ol {
+  margin: 0;
+  padding: 0;
+}
+
+page-login ul {
+  display: block;
+  list-style-type: disc;
+  -webkit-margin-before: 1em;
+  margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+  margin-block-end: 1em;
+  -webkit-margin-start: 0px;
+  -moz-margin-start: 0px;
+  margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+  -moz-margin-end: 0px;
+  margin-inline-end: 0px;
+  -webkit-padding-start: 40px;
+  -moz-padding-start: 40px;
+  padding-inline-start: 40px;
+}
+
+page-login .footer {
+  text-align: center;
+}
+
+page-login .footer-top {
+  background-color: #594aac;
+  padding-top: 50px;
+}
+
+page-login body {
+  font-family: yekan, byekan;
+  font-weight: 400;
+  color: #6c7279;
+}
+
+page-login .navigation li {
+  display: inline-block;
+}
+
+page-login ul li {
+  list-style: none;
+  margin-left: 30px;
 }
 
 page-login ion-item {
@@ -25962,7 +26133,8 @@ page-login2 .footer-md::before {
 }
 
 page-login2 ion-content {
-  background: linear-gradient(316deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-image: url(http://ecupservice.ffiri.ir/images/texture.png);
+  background-repeat: repeat;
   background-size: 1800% 1800%;
   -webkit-animation: rainbow 30s linear infinite;
   animation: rainbow 30s linear infinite;
@@ -25998,6 +26170,72 @@ page-login2 .logo {
   height: auto;
   margin: 0 auto;
   padding-top: 50px;
+  max-width: 200px;
+}
+
+page-login2 .navigation {
+  float: right;
+  direction: rtl;
+}
+
+page-login2 .navigation a {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  font-weight: 700;
+  margin-left: 40px;
+  text-transform: uppercase;
+}
+
+page-login2 .white {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+page-login2 ul,
+page-login2 ol {
+  margin: 0;
+  padding: 0;
+}
+
+page-login2 ul {
+  display: block;
+  list-style-type: disc;
+  -webkit-margin-before: 1em;
+  margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+  margin-block-end: 1em;
+  -webkit-margin-start: 0px;
+  -moz-margin-start: 0px;
+  margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+  -moz-margin-end: 0px;
+  margin-inline-end: 0px;
+  -webkit-padding-start: 40px;
+  -moz-padding-start: 40px;
+  padding-inline-start: 40px;
+}
+
+page-login2 .footer {
+  text-align: center;
+}
+
+page-login2 .footer-top {
+  background-color: #594aac;
+  padding-top: 50px;
+}
+
+page-login2 body {
+  font-family: yekan, byekan;
+  font-weight: 400;
+  color: #6c7279;
+}
+
+page-login2 .navigation li {
+  display: inline-block;
+}
+
+page-login2 ul li {
+  list-style: none;
+  margin-left: 20px;
 }
 
 page-login2 ion-item {
