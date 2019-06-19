@@ -64,6 +64,7 @@
         <!-- /banner -->
 
         <!-- features -->
+        @if(count($news)>0)
         <section id="features" class="features section">
             <div class="container">
                 <div class="row">
@@ -135,9 +136,11 @@
                 </div>
             </div>
         </section>
+        @endif
         <!-- /features -->
 
         <!-- tables -->
+        @if(count($iframes)>0)
         <section id="tables" class="tables section no-padding">
             <div class="container-fluid">
                 <div class="row no-gutter">
@@ -155,9 +158,11 @@
                 </div>
             </div>
         </section>
+        @endif
         <!-- /tables -->
 
         <!-- testimonials -->
+        @if(count($rules)>0)
         <section id="download" class="section download">
             <div class="container-fluid">
                 <div class="row no-gutter">
@@ -182,9 +187,11 @@
 
             </div>
         </section>
+        @endif
         <!-- download -->
 
         <!-- works -->
+        @if (count($games) > 0)
         <section id="works" class="works section no-padding">
             <div class="container-fluid">
                 <div class="row no-gutter">
@@ -208,10 +215,12 @@
                 </div>
             </div>
         </section>
+        @endif
         <!-- /works -->
 
 
         <!-- teams -->
+        @if(count($stats)>0)
         <section id="teams" class="section teams">
             <div class="container">
                 <div class="row">
@@ -238,6 +247,7 @@
                 </div>
             </div>
         </section>
+        @endif
         <!-- /teams -->
 
         <!-- testimonials -->
@@ -351,37 +361,42 @@
 
 
         <footer class="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="row">
 
-                        <div class="footer-col col-md-4">
-                            <h5>ارتباط با ما</h5>
-                            <p>شما می توانید از طریق آدرس ایمیل ir.ffiri@ecup با ما در تماس باشید</p>
-                        </div>
-                        <div class="footer-col col-md-4">
+                            <div class="footer-col col-md-4">
+                                <h5>ارتباط با ما</h5>
+                                {{-- <p>شما می توانید از طریق آدرس ایمیل ir.ffiri@ecup با ما در تماس باشید</p> --}}
+                            <p>{{$contactus}}</p>
+                            </div>
+                            <div class="footer-col col-md-4">
+
+                            </div>
+                            <div class="footer-col col-md-4">
+                                <h5> درباره کمیته فوتبال مجازي</h5>
+                                {{-- <p> درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي</p> --}}
+                            <p>{{$aboutus}}</p>
+                            </div>
 
                         </div>
-                        <div class="footer-col col-md-4">
-                            <h5> درباره کمیته فوتبال مجازي</h5>
-                            <p> درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي</p>
-                        </div>
-
                     </div>
                 </div>
-            </div>
-            <!-- footer top -->
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="col-md-12">
-                        <p>
-                            تمام حقوق مادی و معنوی این سایت متعلق به فدراسیون فوتبال می باشد و استفاده از مطالب با ذکر منبع بلامانع است.<br>
-                        </p>
+                <!-- footer top -->
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="col-md-12">
+                                <p>
+                                    تمام حقوق مادی و معنوی این سایت متعلق به فدراسیون فوتبال می باشد و استفاده از مطالب با ذکر منبع بلامانع است.<br>
+                                </p>
+                                <p>
+                                    {{$copyright}}
+                                </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-        <!-- footer -->
+            </footer>
+            <!-- footer -->
 
 
 

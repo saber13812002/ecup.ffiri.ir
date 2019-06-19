@@ -8,6 +8,7 @@ use App\Iframe;
 use App\Rule;
 use App\Game;
 use App\Statistic;
+use App\Pagesetting;
 
 class HomeController extends Controller
 {
@@ -17,8 +18,9 @@ class HomeController extends Controller
     private $rules;
     private $games;
     private $stats;
+    private $pagesettings;
 
-    public function __construct(News $news, Iframe $iframes, Rule $rules, Game $games, Statistic $stats)
+    public function __construct(News $news, Iframe $iframes, Rule $rules, Game $games, Statistic $stats, Pagesetting $pagesettings)
     {
 
         $this->news = $news;
@@ -26,6 +28,7 @@ class HomeController extends Controller
         $this->rules = $rules;
         $this->games = $games;
         $this->stats = $stats;
+        $this->pagesettings = $pagesettings;
     }
 
     public function index()
@@ -37,7 +40,34 @@ class HomeController extends Controller
         $rules = Rule::all();
         $games = Game::all();
         $stats = Statistic::all();
-        return view('index', compact('news', 'iframes', 'rules', 'games', 'stats'));
+        $pagesettings = Pagesetting::all();
+
+        $aboutus = '';
+        $contactus = '';
+        $copyright = '';
+
+        foreach ($pagesettings as $ps) {
+            switch ($ps->type) {
+                case 'aboutus';
+                    $aboutus = $ps->text;
+                    break;
+                case 'contactus';
+                    $contactus = $ps->text;
+                    break;
+                case 'copyright';
+                    $copyright = $ps->text;
+                    break;
+                case 'sdf';
+                    break;
+                case 'sdf1';
+                    break;
+                case 'sdf2';
+                    break;
+                default:
+            }
+        }
+
+        return view('index', compact('news', 'iframes', 'rules', 'games', 'stats', 'aboutus', 'contactus', 'copyright'));
         //return view('index');
     }
 }
