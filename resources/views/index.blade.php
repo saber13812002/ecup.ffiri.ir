@@ -187,104 +187,22 @@
             <div class="container-fluid">
                 <div class="row no-gutter">
                     <div class="headingsyle">
-                        <h1><span>گالری</span></h1>
+                        <h1><span>بازی ها</span></h1>
                     </div>
+                    @foreach ($games as $game)
                     <div class="col-lg-3 col-md-6 col-sm-6 work">
-                        <a href="images/work-1.jpg" class="work-box">
-                            <img src="images/work-1.jpg" alt="">
+                        <a href="http://ecup.ffiri.ir/{{$game->link}}" class="work-box">
+                            <img src="http://ecup.ffiri.ir/{{$game->link}}" alt="">
                             <div class="overlay">
                                 <div class="overlay-caption">
-                                    <h5>بازی پرسپولیس - استقلال</h5>
-                                    <p>پاس گل رونالدو به چنگیز</p>
+                                    <h5>{{$game->title}}</h5>
+                                    <p>{{$game->englishtitle}}</p>
                                 </div>
                             </div>
                             <!-- overlay -->
                         </a>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 work">
-                        <a href="images/work-2.jpg" class="work-box">
-                            <img src="images/work-2.jpg" alt="">
-                            <div class="overlay">
-                                <div class="overlay-caption">
-                                    <h5>بازی پرسپولیس - استقلال</h5>
-                                    <p>پاس گل رونالدو به چنگیز</p>
-                                </div>
-                            </div>
-                            <!-- overlay -->
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 work">
-                        <a href="images/work-3.jpg" class="work-box">
-                            <img src="images/work-3.jpg" alt="">
-                            <div class="overlay">
-                                <div class="overlay-caption">
-                                    <h5>بازی پرسپولیس - استقلال</h5>
-                                    <p>پاس گل رونالدو به چنگیز</p>
-                                </div>
-                            </div>
-                            <!-- overlay -->
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 work">
-                        <a href="images/work-4.jpg" class="work-box">
-                            <img src="images/work-4.jpg" alt="">
-                            <div class="overlay">
-                                <div class="overlay-caption">
-                                    <h5>بازی پرسپولیس - استقلال</h5>
-                                    <p>پاس گل رونالدو به چنگیز</p>
-                                </div>
-                            </div>
-                            <!-- overlay -->
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 work">
-                        <a href="images/work-5.jpg" class="work-box">
-                            <img src="images/work-5.jpg" alt="">
-                            <div class="overlay">
-                                <div class="overlay-caption">
-                                    <h5>بازی پرسپولیس - استقلال</h5>
-                                    <p>پاس گل رونالدو به چنگیز</p>
-                                </div>
-                            </div>
-                            <!-- overlay -->
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 work">
-                        <a href="images/work-6.jpg" class="work-box">
-                            <img src="images/work-6.jpg" alt="">
-                            <div class="overlay">
-                                <div class="overlay-caption">
-                                    <h5>بازی پرسپولیس - استقلال</h5>
-                                    <p>پاس گل رونالدو به چنگیز</p>
-                                </div>
-                            </div>
-                            <!-- overlay -->
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 work">
-                        <a href="images/work-7.jpg" class="work-box">
-                            <img src="images/work-7.jpg" alt="">
-                            <div class="overlay">
-                                <div class="overlay-caption">
-                                    <h5>بازی پرسپولیس - استقلال</h5>
-                                    <p>پاس گل رونالدو به چنگیز</p>
-                                </div>
-                            </div>
-                            <!-- overlay -->
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 work">
-                        <a href="images/work-8.jpg" class="work-box">
-                            <img src="images/work-8.jpg" alt="">
-                            <div class="overlay">
-                                <div class="overlay-caption">
-                                    <h5>بازی پرسپولیس - استقلال</h5>
-                                    <p>پاس گل رونالدو به چنگیز</p>
-                                </div>
-                            </div>
-                            <!-- overlay -->
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
