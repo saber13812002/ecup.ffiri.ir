@@ -164,46 +164,20 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6 feature text-center">
+                @foreach ($rules as $rule)
 
-                    <div class="feature-content">
-                        <h5>قوانین آنلاین pes</h5>
-                        <p>
-                            <a href="/download/Legal.pdf" class="btn btn-large">دریافت</a>
-                        </p>
+                    <div class="col-md-3 col-sm-6 feature text-center">
+                        <div class="feature-content">
+                            <h5>{{$rule->title}}</h5>
+                            <p>
+                            <a href="http://ecup.ffiri.ir/{{$rule->link}}" class="btn btn-large">دریافت</a>
+                            </p>
 
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6 feature text-center">
 
-                    <div class="feature-content">
-                        <h5>قوانین فیفا آنلاین سیزن فرندلی</h5>
-                        <p>
-                            <a href="/download/cizenFendly.pdf" class="btn btn-large">دریافت</a>
-                        </p>
+                @endforeach
 
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 feature text-center">
-
-                    <div class="feature-content">
-                        <h5>قوانین مسابقات حضوری PES</h5>
-                        <p>
-                            <a href="/download/fifa.pdf" class="btn btn-large">دریافت</a>
-                        </p>
-
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 feature text-center">
-
-                    <div class="feature-content">
-                        <h5>قوانین مسابقات حضوری فیفا</h5>
-                        <p>
-                            <a href="/download/Legal.pdf" class="btn btn-large">دریافت</a>
-                        </p>
-
-                    </div>
-                </div>
             </div>
         </section>
         <!-- download -->
