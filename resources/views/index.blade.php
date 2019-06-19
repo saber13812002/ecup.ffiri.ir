@@ -76,10 +76,10 @@
                         </div> --}}
                         @foreach ($news as $new)
                             <div class="feature-content">
-                                <p class="info">
-                                    {{$new->title}}
+                                <p class="info" style="direction: rtl;">
+                                    {{-- {{$new->title}} --}}
                                     {{$new->body}}
-                                    <li><a href='/news/{{$new->slug}}'>{{$new->title}}</a></li>
+                                    {{-- <li><a href='/news/{{$new->slug}}'>متن کامل خبر</a></li> --}}
                                 </p>
                             </div>
                         @endforeach
