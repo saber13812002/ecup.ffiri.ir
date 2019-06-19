@@ -144,8 +144,11 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 table" style="    text-align: center;">
 
-                            <iframe width="85%" height="360" src="https://widget.toornament.com/tournaments/2491521708242829312/?_locale=en_US&theme=" allowfullscreen frameborder="0"></iframe>
+                        @foreach ($iframes as $iframe)
+                            {{-- https://widget.toornament.com/tournaments/2491521708242829312/?_locale=en_US&theme= --}}
+                            <iframe width="85%" height="360" src="{{$iframe->link}}" allowfullscreen frameborder="0"></iframe>
 
+                        @endforeach
                     </div>
                 </div>
             </div>
