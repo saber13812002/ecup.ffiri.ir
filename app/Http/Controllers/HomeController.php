@@ -7,6 +7,7 @@ use App\News;
 use App\Iframe;
 use App\Rule;
 use App\Game;
+use App\Statistic;
 
 class HomeController extends Controller
 {
@@ -15,14 +16,16 @@ class HomeController extends Controller
     private $iframes;
     private $rules;
     private $games;
+    private $stats;
 
-    public function __construct(News $news, Iframe $iframes, Rule $rules, Game $games)
+    public function __construct(News $news, Iframe $iframes, Rule $rules, Game $games, Statistic $stats)
     {
 
         $this->news = $news;
         $this->iframes = $iframes;
         $this->rules = $rules;
         $this->games = $games;
+        $this->stats = $stats;
     }
 
     public function index()
@@ -33,7 +36,8 @@ class HomeController extends Controller
         $iframes = Iframe::all();
         $rules = Rule::all();
         $games = Game::all();
-        return view('index', compact('news', 'iframes', 'rules', 'games'));
+        $stats = Statistic::all();
+        return view('index', compact('news', 'iframes', 'rules', 'games', 'stats'));
         //return view('index');
     }
 }
