@@ -144,9 +144,9 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 table" style="    text-align: center;">
 
-                        @foreach ($iframe as $ifram)
+                        @foreach ($iframes as $iframe)
                             {{-- https://widget.toornament.com/tournaments/2491521708242829312/?_locale=en_US&theme= --}}
-                            <iframe width="85%" height="360" src="{{$ifram->link}}" allowfullscreen frameborder="0"></iframe>
+                            <iframe width="85%" height="360" src="{{$iframe->link}}" allowfullscreen frameborder="0"></iframe>
 
                         @endforeach
                     </div>
