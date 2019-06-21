@@ -36,13 +36,12 @@
                         <img src="images/logo.png" alt=""></a>
                     <nav class="navigation" role="navigation">
                         <ul class="primary-nav">
-                            <li><a href="#features">اطلاعیه ها</a></li>
+                            <li><a href="#features">اخبار</a></li>
                             <li><a href="#works">گالری</a></li>
                             <li><a href="#teams">آمار بازی</a></li>
-                            <li><a href="#tables">جدول مسابقات</a></li>
-                            <li><a href="#testimonials"> قوانین</a></li>
+                            <li><a href="#testimonials">جدول مسابقات</a></li>
+                            <li><a href="#download">قوانین</a></li>
                             <li><a href="/reg">ثبت نام</a></li>
-                            <li><a href="#contact">ورود</a></li>
                         </ul>
                     </nav>
                     <a href="#" class="nav-toggle">منو<span></span></a>
@@ -73,18 +72,67 @@
                         <h1><span>اطلاعیه</span></h1>
                     </div>
                     <div class="col-md-12 col-sm-12 feature text-center">
-
+                        {{-- <div class="feature-content">
+                            <p class="info">
+                                به اطلاع کلیه علاقه مندان و مخاطبان بازی های فوتبال می رساند ، کمیته فوتبال مجازی فدراسیون فوتبال جمهوری اسلامی ایران ، پس از پیگیری های لازم و ایجاد ارتباط با فدراسیون جهانی فوتبال فیفا و کنفدراسیون فوتبال آسیا و اخذ حمایت ها از این دو ارگان بین المللی جهت شرکت رسمی و ورود بازیکنان ایرانی به مسابقات جهانی و آسیایی ، از کلیه علاقه مندان و بازیکنان دعوت مینماید جهت ثبت نام و عضویت در باشگاه فوتبال الکترونیک فدراسیون فوتبال به آدرس پایگاه اطلاع رسانی ecup.ffiri.ir  مراجعه و اطلاعات لازم را وارد و فرم مربوطه را تکمیل نمایند. شایان ذکر است که اولین دوره مسابقات آنلاین فوتبال مجازی در بازی FIFA با عنوان جام رمضان در هفته آخر ماه مبارک رمضان و به مناسبت فرارسیدن عید سعید فطر برگزار خواهد شد. با توجه به آغاز به کار لیگ فوتبال مجازی فدراسیون فوتبال از ماه جاری، مسابقات لیگ به صورت دوره ای و دائمی در طول سال برگزار خواهد شد و در آینده نزدیک با رعایت و اجرای قوانین و مقررات فدراسیون جهانی فوتبال فیفا شرایط و امکان حضور منتخبان ایرانی در مسابقات جهانی فراهم خواهد شد. عضویت در باشگاه و دریافت کد رهگیری برای شرکت در تمام دوره ها و برنامه ها و مسابقات کمیته الزامی میباشد. همچنین پس از شروع مسابقات لیگ فوتبال مجازی، با مشارکت و همکاری سازمان لیگ فوتبال فدراسیون، در آینده ای نزدیک تیم های فوتبال مجازی برای هر شانزده تیم باشگاهی لیگ فوتبال کشورمان تشکیل خواهد شد. هر تیم باشگاه فوتبال کشورمان تا یازده بازیکن بازی FIFA را جذب خواهد کرد که به زودی نحوه انتخاب و عضویت در باشگاه های لیگ کشورمان به اطلاع عموم خواهد رسید.
+                            </p>
+                        </div> --}}
                         @foreach ($news as $new)
-                            <div class="feature-content">
-                                <p class="info" style="direction: rtl;">
-                                    {{-- {{$new->title}} --}}
-                                    {{$new->body}}
-                                    {{-- <li><a href='/news/{{$new->slug}}'>متن کامل خبر</a></li> --}}
-                                </p>
-                            </div>
+                        <div class="feature-content">
+                            <p class="info" style="direction: rtl;">
+                                {{-- {{$new->title}} --}}
+                                {{$new->body}}
+                                {{-- <li><a href='/news/{{$new->slug}}'>متن کامل خبر</a></li> --}}
+                            </p>
+                        </div>
                         @endforeach
-
                     </div>
+                    {{-- <div class="col-md-4 col-sm-6 feature text-center">
+                        <span class="icon icon-desktop"></span>
+                        <div class="feature-content">
+                            <h5>پيروزى تيم ملى جوانان در اردوى اهواز</h5>
+                            <p>
+                                تيم ملى فوتبال جوانان در بازى تداركاتى مقابل تيم اميد نفت اهواز به برترى رسيد.
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 feature text-center">
+                        <span class="icon icon-lightbulb"></span>
+                        <div class="feature-content">
+                            <h5>پيروزى تيم ملى جوانان در اردوى اهواز</h5>
+                            <p>
+                                تيم ملى فوتبال جوانان در بازى تداركاتى مقابل تيم اميد نفت اهواز به برترى رسيد.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 feature text-center">
+                        <span class="icon icon-genius"></span>
+                        <div class="feature-content">
+                            <h5>پيروزى تيم ملى جوانان در اردوى اهواز</h5>
+                            <p>
+                                تيم ملى فوتبال جوانان در بازى تداركاتى مقابل تيم اميد نفت اهواز به برترى رسيد.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 feature text-center">
+                        <span class="icon icon-briefcase"></span>
+                        <div class="feature-content">
+                           <h5>پيروزى تيم ملى جوانان در اردوى اهواز</h5>
+                            <p>
+                                تيم ملى فوتبال جوانان در بازى تداركاتى مقابل تيم اميد نفت اهواز به برترى رسيد.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 feature text-center">
+                        <span class="icon icon-download"></span>
+                        <div class="feature-content">
+                            <h5>پيروزى تيم ملى جوانان در اردوى اهواز</h5>
+                            <p>
+                                تيم ملى فوتبال جوانان در بازى تداركاتى مقابل تيم اميد نفت اهواز به برترى رسيد.
+                            </p>
+                        </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
@@ -115,7 +163,7 @@
 
         <!-- testimonials -->
         @if(count($rules)>0)
-        <section id="testimonials" class="section testimonials">
+        <section id="download" class="section download">
             <div class="container-fluid">
                 <div class="row no-gutter">
                     <div class="headingsyle">
@@ -140,7 +188,7 @@
             </div>
         </section>
         @endif
-        <!--  -->
+        <!-- download -->
 
         <!-- works -->
         @if (count($games) > 0)
@@ -201,8 +249,73 @@
         </section>
         @endif
         <!-- /teams -->
-        <!-- /testimonials -->
 
+        <!-- testimonials -->
+
+        <!-- <section id="testimonials" class="section testimonials no-padding">
+            <div class="container-fluid">
+                <div class="row no-gutter">
+                    <div class="col-md-12">
+                        <img src="/images/table.jpg" class="thumbnail center-block" />
+                    </div> -->
+
+                    <!-- <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <div class="col-md-6">
+                                    <div class="avatar">
+                                        <img src="images/testimonial-1.jpg" alt="" class="img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <blockquote>
+                                        <p>
+                                            "Yesterday's the past, tomorrow's the future, but today is a gift. That's why it's called the present......."
+                                        </p>
+                                        <cite class="author">- Bil Keane</cite>
+                                    </blockquote>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-6">
+                                    <div class="avatar">
+                                        <img src="images/testimonial-2.jpg" alt="" class="img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <blockquote>
+                                        <p>
+                                            "My favorite things in life don't cost any money. It's really clear that the most precious resource we all have is time........"
+                                        </p>
+                                        <cite class="author">= Steve Jobs....</cite>
+                                    </blockquote>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> -->
+                    <!-- flexslider -->
+
+
+                <!-- </div>
+            </div>
+        </section> -->
+
+
+
+        <!-- testimonials -->
+
+
+        <!-- download -->
+        <section id="download" class="section download">
+            <div class="container">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h3>قوانین</h3>
+                    <p>برای دانلود قوانین بازی ها روی لینک زیر کلیک کنید</p>
+                    <a href="/download/Legal.pdf" class="btn btn-large">دریافت قوانین</a>
+                </div>
+            </div>
+        </section>
+        <!-- /download -->
 
         <!-- faq-info -->
         <div id="faq-info" class="space100">
@@ -225,7 +338,7 @@
         </div>
         <!-- /faq-info -->
 
-        <!-- Contact -->
+        <!-- Contact Form -->
         <section id="contact" class="space100">
             <div class="container">
                 <div class="row">
@@ -251,7 +364,7 @@
                 <!-- ./end row -->
             </div>
         </section>
-        <!-- End Contact -->
+        <!-- End Contact Form -->
 
 
         <footer class="footer">
@@ -261,6 +374,7 @@
 
                             <div class="footer-col col-md-4">
                                 <h5>ارتباط با ما</h5>
+                                {{-- <p>شما می توانید از طریق آدرس ایمیل ir.ffiri@ecup با ما در تماس باشید</p> --}}
                             <p>{{$contactus}}</p>
                             </div>
                             <div class="footer-col col-md-4">
@@ -268,6 +382,7 @@
                             </div>
                             <div class="footer-col col-md-4">
                                 <h5> درباره کمیته فوتبال مجازي</h5>
+                                {{-- <p> درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي درباره کمیته فوتبال مجازي</p> --}}
                             <p>{{$aboutus}}</p>
                             </div>
 
@@ -278,6 +393,9 @@
                 <div class="footer-bottom">
                     <div class="container">
                         <div class="col-md-12">
+                                <!-- <p>
+                                    تمام حقوق مادی و معنوی این سایت متعلق به فدراسیون فوتبال می باشد و استفاده از مطالب با ذکر منبع بلامانع است.<br>
+                                </p> -->
                                 <p>
                                     {{$copyright}}
                                 </p>
