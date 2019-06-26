@@ -871,6 +871,7 @@ var Login2Page = (function () {
                             localStorage.setItem('wpIdeaTokenECUP', JSON.stringify(res));
                             _this.wpIdeaTokenECUP = JSON.stringify(res);
                             _this.step1flag = false;
+                            _this.gotoInfoPage();
                         }, function (err) {
                             _this.presentToast('سرور در دسترس نیست!'
                             // display: 'top',
@@ -1029,7 +1030,7 @@ var Login2Page = (function () {
     Login2Page.prototype.sendPin = function () { };
     Login2Page = Login2Page_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login2',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/'<ion-content padding class="transparent-header iranyekan">\n  <ion-header>\n    <ion-navbar>\n      <nav class="navigation iranyekan" role="navigation">\n          <ul class="primary-nav">\n              <li><a href="/reg">ثبت نام</a></li>\n              <li><a href="#download">قوانین</a></li>\n              <li><a href="#testimonials">جدول مسابقات</a></li>\n              <li><a href="#teams">آمار بازی</a></li>\n              <li><a href="#works" class="">گالری</a></li>\n              <li><a href="#features" class="">اخبار</a></li>\n          </ul>\n      </nav>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="http://ecupservice.ffiri.ir/images/logo.png" />\n  <div padding *ngIf="!jwt">\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="goToFirstPage()" color="light"\n      class="login-button">ویرایش مجدد شماره موبایل </button>\n\n    <ion-item>\n      <ion-input [(ngModel)]="pin" (ionChange)="textChanged()" type="number" placeholder="پین"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="login2()" color="light"\n      class="login-button">بررسی</button>\n\n    <button [disabled]="!wpIdeaTokenECUP" ion-button block outline (click)="gotoInfoPage()" color="light" class="login-button">صفحه ی بعد</button>\n\n  </div>\n</ion-content>\n<ion-footer>\n  <ion-toolbar class="footer navigation iranyekan white">\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/,
+            selector: 'page-login2',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/'<ion-content padding class="transparent-header iranyekan">\n  <ion-header>\n    <ion-navbar>\n      <nav class="navigation iranyekan" role="navigation">\n          <ul class="primary-nav">\n              <li><a href="/reg">ثبت نام</a></li>\n              <li><a href="#download">قوانین</a></li>\n              <li><a href="#testimonials">جدول مسابقات</a></li>\n              <li><a href="#teams">آمار بازی</a></li>\n              <li><a href="#works" class="">گالری</a></li>\n              <li><a href="#features" class="">اخبار</a></li>\n          </ul>\n      </nav>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="http://ecupservice.ffiri.ir/images/logo.png" />\n  <div padding *ngIf="!jwt">\n\n    <button ion-button block outline (click)="goToFirstPage()" color="light"\n      class="login-button">ویرایش مجدد شماره موبایل </button>\n\n    <ion-item>\n      <ion-input [(ngModel)]="pin" (ionChange)="textChanged()" type="number" placeholder="پین"></ion-input>\n    </ion-item>\n\n    <button [disabled]="!step1flag" ion-button block outline (click)="login2()" color="light"\n      class="login-button">بررسی</button>\n\n    <button [disabled]="!wpIdeaTokenECUP" ion-button block outline (click)="gotoInfoPage()" color="light" class="login-button">صفحه ی بعد</button>\n\n  </div>\n</ion-content>\n<ion-footer>\n  <ion-toolbar class="footer navigation iranyekan white">\n    <ion-list no-lines>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login2\login2.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -1706,6 +1707,7 @@ var LoginPage = (function () {
                             console.log(res);
                             _this.resultCallOtp1 = res;
                             _this.step1flag = false;
+                            _this.gotoPinPage();
                         }, function (err) {
                             _this.presentToast('سرور در دسترس نیست!'
                             // display: 'top',
