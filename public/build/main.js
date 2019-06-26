@@ -1,366 +1,5 @@
 webpackJsonp([0],{
 
-/***/ 110:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login2_login2__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_language_service_language_service__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__env__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_http__ = __webpack_require__(48);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
-var LoginPage = (function () {
-    function LoginPage(navCtrl, 
-        //private cookieService: CookieService,
-        loadingCtrl, translate, languageService, toastController, restProvider, iab, navParams) {
-        this.navCtrl = navCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.translate = translate;
-        this.languageService = languageService;
-        this.toastController = toastController;
-        this.restProvider = restProvider;
-        this.iab = iab;
-        this.navParams = navParams;
-        this.patternMobile = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/;
-        this.redirectUri = "http://localhost:8100/";
-        this.loginUrl = "https://ffiri.ir/blog/jwt.php?client_id=&redirect_uri=&response_type=id_token-token&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbWFzamVkY2xvb2IuaXJcL2Jsb2ciLCJpYXQiOjE1NDk0NjAyMjEsIm5iZiI6MTU0OTQ2MDIyMSwiZXhwIjoxNTUwMDY1MDIxLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxIn19fQ.sbGawBdMFt7jAhn3RIYyxui_er0_XsJ67YRWBtaUUyw";
-        this.step1flag = false;
-        this.logintext = "ارسال کد";
-        this.languages = this.languageService.getLanguages();
-        this.setLanguage();
-    }
-    // ngOnInit(): void {
-    //   //this.cookieService.set( 'Test', 'Hello World' );
-    //   //this.JWT = this.cookieService.get('JWT');
-    //   console.log('jwt '+this.JWT)
-    //   this.validateToken(this.JWT);
-    // }
-    LoginPage.prototype.ionViewDidLoad = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var params;
-            return __generator(this, function (_a) {
-                console.log('ionViewDidLoad LoginPage');
-                this.wpIdeaTokenECUP = JSON.parse(localStorage.getItem('wpIdeaTokenECUP'));
-                if (this.wpIdeaTokenECUP) {
-                    //await this.validateToken(null);
-                    this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
-                }
-                params = new __WEBPACK_IMPORTED_MODULE_10__angular_http__["c" /* URLSearchParams */](window.location.search);
-                this.JWT = params.get('jwt');
-                console.log('jwt :' + this.JWT);
-                return [2 /*return*/];
-            });
-        });
-    };
-    LoginPage.prototype.callOtp11 = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var loading, report;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        loading = this.loadingCtrl.create({ content: 'در حال ارسال درخواست به سرور' });
-                        return [4 /*yield*/, loading.present()];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, this.restProvider.getOtp1(this.mobile)];
-                    case 2:
-                        report = _a.sent();
-                        report.subscribe(function (res) {
-                            console.log(res);
-                            _this.resultCallOtp1 = res;
-                            _this.step1flag = false;
-                        }, function (err) {
-                            _this.presentToast('سرور در دسترس نیست!'
-                            // display: 'top',
-                            // color: 'warning'
-                            );
-                            console.log(err);
-                            loading.dismiss();
-                        }, function () { return loading.dismiss(); });
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    LoginPage.prototype.textChanged = function () {
-        this.logintext = "ورود";
-    };
-    LoginPage.prototype.login = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var loading, data;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        loading = this.loadingCtrl.create({
-                            duration: 1000
-                        });
-                        return [4 /*yield*/, this.callOtp1()];
-                    case 1:
-                        data = _a.sent();
-                        loading.present();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    LoginPage.prototype.gotoPinPage = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login2_login2__["a" /* Login2Page */], { mobile: this.mobile });
-    };
-    LoginPage.prototype.login2 = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var loader;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        loader = this.loadingCtrl.create({ content: 'ارسال' });
-                        return [4 /*yield*/, loader.present()];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, this.callOtp11()];
-                    case 2:
-                        _a.sent();
-                        loader.dismiss();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    LoginPage.prototype.callOtp1 = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.restProvider.postOtp1(this.mobile).subscribe(function (data) {
-                            console.log(data);
-                            _this.resultCallOtp1 = data;
-                            return data;
-                        })];
-                    case 1:
-                        result = _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    LoginPage.prototype.createAndSaveNonce = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, ""];
-            });
-        });
-    };
-    LoginPage.prototype.step1 = function () {
-        if (this.patternMobile.test(this.mobile)) {
-            this.step1flag = true;
-        }
-        else {
-            this.step1flag = false;
-        }
-    };
-    LoginPage.prototype.signup = function (type) {
-        return __awaiter(this, void 0, void 0, function () {
-            var signupOrSignin, oauthUrl, browser;
-            return __generator(this, function (_a) {
-                signupOrSignin = (type == 'signup' ? __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].security.register : __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].security.login);
-                oauthUrl = __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].api.baseUrl + signupOrSignin;
-                '?client_id=' + __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].clientId + '&' +
-                    'redirect_uri=' + __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].redirectUri + '&' +
-                    'response_type=id_token%20token&';
-                if (type == 'add')
-                    oauthUrl = 'https://ffiri.ir/blog/wp-admin/post-new.php';
-                else if (type == 'all')
-                    oauthUrl = 'https://ffiri.ir/blog/wp-admin/edit.php';
-                browser = this.iab.create(oauthUrl, '_blank', 'location=no,clearcache=yes,clearsessioncache=yes,useWideViewPort=yes');
-                browser.on('loadstart').subscribe(function (event) {
-                    if ((event.url).indexOf('http://localhost:8100') === 0) {
-                        browser.on('exit').subscribe(function () { });
-                        browser.close();
-                        var defaultError = 'Problem authenticating with SimplePOS IDS';
-                    }
-                });
-                browser.on('exit').subscribe(function (event) {
-                });
-                return [2 /*return*/];
-            });
-        });
-    };
-    LoginPage.prototype.signup2 = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                return [2 /*return*/, new Promise(function (resolve, reject) {
-                        return _this.createAndSaveNonce().then(function (nonce) {
-                            var state = Math.floor(Math.random() * 1000000000).toString();
-                            if (window.crypto) {
-                                var array = new Uint32Array(1);
-                                window.crypto.getRandomValues(array);
-                                state = array.join().toString();
-                            }
-                            _this.buildOAuthUrl(state, nonce).then(function (oauthUrl) {
-                                var browser = _this.iab.create(oauthUrl, '_blank', 'location=no,clearcache=yes,clearsessioncache=yes,useWideViewPort=yes');
-                                browser.on('loadstart').subscribe(function (event) {
-                                    if ((event.url).indexOf('http://localhost:8100') === 0) {
-                                        browser.on('exit').subscribe(function () { });
-                                        browser.close();
-                                        var parsedResponse = _this.fetchToken(event.url);
-                                        var defaultError = 'Problem authenticating with IDS';
-                                        if (parsedResponse['state'] !== state) {
-                                            reject(defaultError);
-                                        }
-                                        else if (parsedResponse['access_token'] !== undefined &&
-                                            parsedResponse['access_token'] !== null) {
-                                            resolve(parsedResponse);
-                                        }
-                                        else {
-                                            reject(defaultError);
-                                        }
-                                    }
-                                });
-                                browser.on('exit').subscribe(function (event) {
-                                    reject('The IDS sign in flow was canceled');
-                                });
-                            }, function (result) {
-                                throw new Error(result);
-                            });
-                        });
-                    }).catch(function (error) {
-                        throw error;
-                    })];
-            });
-        });
-    };
-    LoginPage.prototype.fetchToken = function (url) {
-        var parsedResponse = {};
-        if (url) {
-            var urlParameter = url.split('#')[1];
-            if (urlParameter) {
-                var responseParameters = urlParameter.split('&');
-                for (var i = 0; i < responseParameters.length; i++) {
-                    parsedResponse[responseParameters[i].split('=')[0]] =
-                        responseParameters[i].split('=')[1];
-                }
-            }
-        }
-        return parsedResponse;
-    };
-    LoginPage.prototype.buildOAuthUrl = function (state, nonce) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, this.loginUrl +
-                        //'?client_id=' + this.oauthService.clientId
-                        +'&' + 'redirect_uri=' + this.redirectUri
-                        + '&' + 'response_type=id_token%20token' +
-                        //+ '&' + 'scope=' + encodeURI(this.oauthService.scope)
-                        +'&' + 'state=' + state + '&nonce=' + nonce];
-            });
-        });
-    };
-    LoginPage.prototype.setLanguage = function () {
-        var defaultLanguage = this.translate.getDefaultLang();
-        if (this.languageSelected) {
-            this.translate.setDefaultLang(this.languageSelected);
-            this.translate.use(this.languageSelected);
-        }
-        else {
-            this.languageSelected = defaultLanguage;
-            this.translate.use(defaultLanguage);
-        }
-    };
-    LoginPage.prototype.presentToast = function (msg, time) {
-        if (time === void 0) { time = 2000; }
-        var toast = this.toastController.create({
-            message: msg,
-            duration: time,
-            position: "top"
-        });
-        toast.present();
-    };
-    LoginPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/'<ion-content padding class="transparent-header iranyekan white">\n  <ion-header>\n    <ion-navbar>\n      <nav class="navigation iranyekan" role="navigation">\n          <ul class="primary-nav">\n              <li><a href="/reg">ثبت نام</a></li>\n              <li><a href="#download">قوانین</a></li>\n              <li><a href="#testimonials">جدول مسابقات</a></li>\n              <li><a href="#teams">آمار بازی</a></li>\n              <li><a href="#works" class="">گالری</a></li>\n              <li><a href="#features" class="">اخبار</a></li>\n          </ul>\n      </nav>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="http://ecupservice.ffiri.ir/images/logo.png" />\n  <div padding *ngIf="!jwt">\n        لطفا شماره همراه خود را وارد کنید\n    <ion-item>\n      <ion-input [(ngModel)]="mobile" (ionChange)="step1()" [pattern]="patternMobile" type="text" placeholder="موبایل">\n      </ion-input>\n    </ion-item>\n    <button [disabled]="!step1flag" ion-button block outline (click)="login2()" color="light" class="login-button">{{logintext}}</button>\n    <button [disabled]="!resultCallOtp1" ion-button block outline (click)="gotoPinPage()" color="light" class="login-button">صفحه ی بعد</button>\n  </div>\n</ion-content>\n<ion-footer class="navigation iranyekan white">\n    <ion-list>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/,
-            providers: [__WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__["a" /* RestProvider */]]
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_5__providers_language_service_language_service__["a" /* LanguageServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__["a" /* RestProvider */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-    ], LoginPage);
-    return LoginPage;
-}());
-
-//# sourceMappingURL=login.js.map
-
-/***/ }),
-
 /***/ 111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -812,7 +451,7 @@ var HomePage = (function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                this.restProvider.postTokenValidate(this.token, this.email, null, null, null, null, null).subscribe(function (data) {
+                this.restProvider.postTokenValidate(this.token, this.email, null, null, null, null, null, null).subscribe(function (data) {
                     console.log(data);
                     if (data.data[0]) {
                         _this.name = data.data[0].name;
@@ -821,6 +460,7 @@ var HomePage = (function () {
                         _this.email = data.data[0].email;
                         _this.national_code = data.data[0].national_code;
                         _this.psn_id = data.data[0].psn_id;
+                        _this.type = data.data[0].type;
                         _this.presentToast("بارگذاری شد");
                     }
                     return data;
@@ -863,7 +503,7 @@ var HomePage = (function () {
     HomePage.prototype.save = function () {
         var _this = this;
         this.presentToast("کمی صبر کنید");
-        this.restProvider.postTokenValidate(this.token, this.email, this.name, this.family, this.mobile, this.national_code, this.psn_id).subscribe(function (data) {
+        this.restProvider.postTokenValidate(this.token, this.email, this.name, this.family, this.mobile, this.national_code, this.psn_id, this.type).subscribe(function (data) {
             console.log(data);
             if (data.data[0]) {
                 _this.name = data.data[0].name;
@@ -872,6 +512,7 @@ var HomePage = (function () {
                 _this.email = data.data[0].email;
                 _this.national_code = data.data[0].national_code;
                 _this.psn_id = data.data[0].psn_id;
+                _this.type = data.data[0].type;
                 _this.presentToast("ذخیره شد");
             }
             return data;
@@ -924,7 +565,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n      <nav class="navigation iranyekan" role="navigation">\n          <ul class="primary-nav">\n              <li><a href="/reg">ثبت نام</a></li>\n              <li><a href="#download">قوانین</a></li>\n              <li><a href="#testimonials">جدول مسابقات</a></li>\n              <li><a href="#teams">آمار بازی</a></li>\n              <li><a href="#works" class="">گالری</a></li>\n              <li><a href="#features" class="">اخبار</a></li>\n          </ul>\n      </nav>\n    <ion-title class="white">\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan white">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [disabled]="true" [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="checkNID()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagNID">\n      لطفا عدد کدملی خود را کامل و صحیح وارد کنید\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="checkPSN()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagPSN">\n      لطفا آی دی را وارد کنید\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button white">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n      <nav class="navigation iranyekan" role="navigation">\n          <ul class="primary-nav">\n              <li><a href="/reg">ثبت نام</a></li>\n              <li><a href="#download">قوانین</a></li>\n              <li><a href="#testimonials">جدول مسابقات</a></li>\n              <li><a href="#teams">آمار بازی</a></li>\n              <li><a href="#works" class="">گالری</a></li>\n              <li><a href="#features" class="">اخبار</a></li>\n          </ul>\n      </nav>\n    <ion-title class="white">\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan white">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [disabled]="true" [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="checkNID()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagNID">\n      لطفا عدد کدملی خود را کامل و صحیح وارد کنید\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="checkPSN()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagPSN">\n      لطفا آی دی را وارد کنید\n    </ion-item>\n\n\n    <ion-item>\n      <ion-label>قصد شرکت در کدام مسابقه را دارید؟</ion-label>\n      <ion-select (ionChange)="modified()" [(ngModel)]="type" value="onlinefriendlies" okText="ثبت" cancelText="انصراف">\n        <ion-option value="Online Friendlies">Online Friendlies</ion-option>\n        <ion-option value="FUT">FUT</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button white">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -947,7 +588,7 @@ var HomePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(59);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1033,10 +674,11 @@ var ExitPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-exit',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\exit\exit.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      خروج\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  خروج\n  <button ion-button block clear (click)="exit()" color="dark" class="login-button">\n    <ion-icon name="log-out"></ion-icon> خروج\n  </button>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\exit\exit.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
     ], ExitPage);
     return ExitPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=exit.js.map
@@ -1059,7 +701,7 @@ var ExitPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__login_login__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__login_login__ = __webpack_require__(59);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1441,7 +1083,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ngx_translate_http_loader__ = __webpack_require__(302);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_language_service_language_service__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_login_login__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_login_login__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login2_login2__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_exit_exit__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_status_bar__ = __webpack_require__(208);
@@ -1552,7 +1194,7 @@ function createTranslateLoader(http) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(59);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1875,7 +1517,7 @@ var RestProvider = (function () {
             });
         });
     };
-    RestProvider.prototype.postTokenValidate = function (id, email, name, family, mobile, national_code, psn_id) {
+    RestProvider.prototype.postTokenValidate = function (id, email, name, family, mobile, national_code, psn_id, type) {
         var uri = __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].api.baseUrl + __WEBPACK_IMPORTED_MODULE_7__env__["a" /* ENV */].service.getMe;
         console.log(uri);
         var httpOptions = {
@@ -1896,6 +1538,8 @@ var RestProvider = (function () {
             data += ("&national_code=" + national_code);
         if (psn_id)
             data += ("&psn_id=" + psn_id);
+        if (type)
+            data += ("&type=" + type);
         return this.http.post(uri, data, httpOptions)
             .catch(function (err) {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
@@ -1926,6 +1570,367 @@ var RestProvider = (function () {
 }());
 
 //# sourceMappingURL=rest.js.map
+
+/***/ }),
+
+/***/ 59:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login2_login2__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_language_service_language_service__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__env__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_http__ = __webpack_require__(48);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+var LoginPage = (function () {
+    function LoginPage(navCtrl, 
+        //private cookieService: CookieService,
+        loadingCtrl, translate, languageService, toastController, restProvider, iab, navParams) {
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.translate = translate;
+        this.languageService = languageService;
+        this.toastController = toastController;
+        this.restProvider = restProvider;
+        this.iab = iab;
+        this.navParams = navParams;
+        this.patternMobile = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/;
+        this.redirectUri = "http://localhost:8100/";
+        this.loginUrl = "https://ffiri.ir/blog/jwt.php?client_id=&redirect_uri=&response_type=id_token-token&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbWFzamVkY2xvb2IuaXJcL2Jsb2ciLCJpYXQiOjE1NDk0NjAyMjEsIm5iZiI6MTU0OTQ2MDIyMSwiZXhwIjoxNTUwMDY1MDIxLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxIn19fQ.sbGawBdMFt7jAhn3RIYyxui_er0_XsJ67YRWBtaUUyw";
+        this.step1flag = false;
+        this.logintext = "ارسال کد";
+        this.languages = this.languageService.getLanguages();
+        this.setLanguage();
+    }
+    // ngOnInit(): void {
+    //   //this.cookieService.set( 'Test', 'Hello World' );
+    //   //this.JWT = this.cookieService.get('JWT');
+    //   console.log('jwt '+this.JWT)
+    //   this.validateToken(this.JWT);
+    // }
+    LoginPage.prototype.ionViewDidLoad = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var params;
+            return __generator(this, function (_a) {
+                console.log('ionViewDidLoad LoginPage');
+                this.wpIdeaTokenECUP = JSON.parse(localStorage.getItem('wpIdeaTokenECUP'));
+                if (this.wpIdeaTokenECUP) {
+                    //await this.validateToken(null);
+                    this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
+                }
+                params = new __WEBPACK_IMPORTED_MODULE_10__angular_http__["c" /* URLSearchParams */](window.location.search);
+                this.JWT = params.get('jwt');
+                console.log('jwt :' + this.JWT);
+                return [2 /*return*/];
+            });
+        });
+    };
+    LoginPage.prototype.callOtp11 = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var loading, report;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        loading = this.loadingCtrl.create({ content: 'در حال ارسال درخواست به سرور' });
+                        return [4 /*yield*/, loading.present()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.restProvider.getOtp1(this.mobile)];
+                    case 2:
+                        report = _a.sent();
+                        report.subscribe(function (res) {
+                            console.log(res);
+                            _this.resultCallOtp1 = res;
+                            _this.step1flag = false;
+                        }, function (err) {
+                            _this.presentToast('سرور در دسترس نیست!'
+                            // display: 'top',
+                            // color: 'warning'
+                            );
+                            console.log(err);
+                            loading.dismiss();
+                        }, function () { return loading.dismiss(); });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoginPage.prototype.textChanged = function () {
+        this.logintext = "ورود";
+    };
+    LoginPage.prototype.login = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var loading, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        loading = this.loadingCtrl.create({
+                            duration: 1000
+                        });
+                        return [4 /*yield*/, this.callOtp1()];
+                    case 1:
+                        data = _a.sent();
+                        loading.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoginPage.prototype.gotoPinPage = function () {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login2_login2__["a" /* Login2Page */], { mobile: this.mobile });
+    };
+    LoginPage.prototype.login2 = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var loader;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        loader = this.loadingCtrl.create({ content: 'ارسال' });
+                        return [4 /*yield*/, loader.present()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.callOtp11()];
+                    case 2:
+                        _a.sent();
+                        loader.dismiss();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoginPage.prototype.callOtp1 = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.restProvider.postOtp1(this.mobile).subscribe(function (data) {
+                            console.log(data);
+                            _this.resultCallOtp1 = data;
+                            return data;
+                        })];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoginPage.prototype.createAndSaveNonce = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, ""];
+            });
+        });
+    };
+    LoginPage.prototype.step1 = function () {
+        if (this.patternMobile.test(this.mobile)) {
+            this.step1flag = true;
+        }
+        else {
+            this.step1flag = false;
+        }
+    };
+    LoginPage.prototype.signup = function (type) {
+        return __awaiter(this, void 0, void 0, function () {
+            var signupOrSignin, oauthUrl, browser;
+            return __generator(this, function (_a) {
+                signupOrSignin = (type == 'signup' ? __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].security.register : __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].security.login);
+                oauthUrl = __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].api.baseUrl + signupOrSignin;
+                '?client_id=' + __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].clientId + '&' +
+                    'redirect_uri=' + __WEBPACK_IMPORTED_MODULE_8__env__["a" /* ENV */].redirectUri + '&' +
+                    'response_type=id_token%20token&';
+                if (type == 'add')
+                    oauthUrl = 'https://ffiri.ir/blog/wp-admin/post-new.php';
+                else if (type == 'all')
+                    oauthUrl = 'https://ffiri.ir/blog/wp-admin/edit.php';
+                browser = this.iab.create(oauthUrl, '_blank', 'location=no,clearcache=yes,clearsessioncache=yes,useWideViewPort=yes');
+                browser.on('loadstart').subscribe(function (event) {
+                    if ((event.url).indexOf('http://localhost:8100') === 0) {
+                        browser.on('exit').subscribe(function () { });
+                        browser.close();
+                        var defaultError = 'Problem authenticating with SimplePOS IDS';
+                    }
+                });
+                browser.on('exit').subscribe(function (event) {
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    LoginPage.prototype.signup2 = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        return _this.createAndSaveNonce().then(function (nonce) {
+                            var state = Math.floor(Math.random() * 1000000000).toString();
+                            if (window.crypto) {
+                                var array = new Uint32Array(1);
+                                window.crypto.getRandomValues(array);
+                                state = array.join().toString();
+                            }
+                            _this.buildOAuthUrl(state, nonce).then(function (oauthUrl) {
+                                var browser = _this.iab.create(oauthUrl, '_blank', 'location=no,clearcache=yes,clearsessioncache=yes,useWideViewPort=yes');
+                                browser.on('loadstart').subscribe(function (event) {
+                                    if ((event.url).indexOf('http://localhost:8100') === 0) {
+                                        browser.on('exit').subscribe(function () { });
+                                        browser.close();
+                                        var parsedResponse = _this.fetchToken(event.url);
+                                        var defaultError = 'Problem authenticating with IDS';
+                                        if (parsedResponse['state'] !== state) {
+                                            reject(defaultError);
+                                        }
+                                        else if (parsedResponse['access_token'] !== undefined &&
+                                            parsedResponse['access_token'] !== null) {
+                                            resolve(parsedResponse);
+                                        }
+                                        else {
+                                            reject(defaultError);
+                                        }
+                                    }
+                                });
+                                browser.on('exit').subscribe(function (event) {
+                                    reject('The IDS sign in flow was canceled');
+                                });
+                            }, function (result) {
+                                throw new Error(result);
+                            });
+                        });
+                    }).catch(function (error) {
+                        throw error;
+                    })];
+            });
+        });
+    };
+    LoginPage.prototype.fetchToken = function (url) {
+        var parsedResponse = {};
+        if (url) {
+            var urlParameter = url.split('#')[1];
+            if (urlParameter) {
+                var responseParameters = urlParameter.split('&');
+                for (var i = 0; i < responseParameters.length; i++) {
+                    parsedResponse[responseParameters[i].split('=')[0]] =
+                        responseParameters[i].split('=')[1];
+                }
+            }
+        }
+        return parsedResponse;
+    };
+    LoginPage.prototype.buildOAuthUrl = function (state, nonce) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.loginUrl +
+                        //'?client_id=' + this.oauthService.clientId
+                        +'&' + 'redirect_uri=' + this.redirectUri
+                        + '&' + 'response_type=id_token%20token' +
+                        //+ '&' + 'scope=' + encodeURI(this.oauthService.scope)
+                        +'&' + 'state=' + state + '&nonce=' + nonce];
+            });
+        });
+    };
+    LoginPage.prototype.setLanguage = function () {
+        var defaultLanguage = this.translate.getDefaultLang();
+        if (this.languageSelected) {
+            this.translate.setDefaultLang(this.languageSelected);
+            this.translate.use(this.languageSelected);
+        }
+        else {
+            this.languageSelected = defaultLanguage;
+            this.translate.use(defaultLanguage);
+        }
+    };
+    LoginPage.prototype.presentToast = function (msg, time) {
+        if (time === void 0) { time = 2000; }
+        var toast = this.toastController.create({
+            message: msg,
+            duration: time,
+            position: "top"
+        });
+        toast.present();
+    };
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/'<ion-content padding class="transparent-header iranyekan white">\n  <ion-header>\n    <ion-navbar>\n      <nav class="navigation iranyekan" role="navigation">\n          <ul class="primary-nav">\n              <li><a href="/reg">ثبت نام</a></li>\n              <li><a href="#download">قوانین</a></li>\n              <li><a href="#testimonials">جدول مسابقات</a></li>\n              <li><a href="#teams">آمار بازی</a></li>\n              <li><a href="#works" class="">گالری</a></li>\n              <li><a href="#features" class="">اخبار</a></li>\n          </ul>\n      </nav>\n    </ion-navbar>\n  </ion-header>\n  <img class="logo" src="http://ecupservice.ffiri.ir/images/logo.png" />\n  <div padding *ngIf="!jwt">\n        لطفا شماره همراه خود را وارد کنید\n    <ion-item>\n      <ion-input [(ngModel)]="mobile" (ionChange)="step1()" [pattern]="patternMobile" type="text" placeholder="موبایل">\n      </ion-input>\n    </ion-item>\n    <button [disabled]="!step1flag" ion-button block outline (click)="login2()" color="light" class="login-button">{{logintext}}</button>\n    <button [disabled]="!resultCallOtp1" ion-button block outline (click)="gotoPinPage()" color="light" class="login-button">صفحه ی بعد</button>\n  </div>\n</ion-content>\n<ion-footer class="navigation iranyekan white">\n    <ion-list>\n    سایت فوتبال مجازی ایران\n    </ion-list>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\login\login.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__["a" /* RestProvider */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_5__providers_language_service_language_service__["a" /* LanguageServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__["a" /* RestProvider */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    ], LoginPage);
+    return LoginPage;
+}());
+
+//# sourceMappingURL=login.js.map
 
 /***/ })
 
