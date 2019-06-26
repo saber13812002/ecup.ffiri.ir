@@ -65,8 +65,8 @@ class OtpController extends Controller
         }
 
         if ($rand_no) {
-
-            app('App\Http\Controllers\SmsController')->send2($phone, $rand_no);
+            if (env('SMS_ENABLE') == "1")
+                app('App\Http\Controllers\SmsController')->send2($phone, $rand_no);
         } else {
             $rand_no = rand(10000, 99999);
             $otp1 = new Otp;
@@ -75,7 +75,8 @@ class OtpController extends Controller
             $otp1->verified = 0;
             $otp1->save();
             //echo $rand_no;
-            app('App\Http\Controllers\SmsController')->send2($phone, $rand_no);
+            if (env('SMS_ENABLE') == "1")
+                app('App\Http\Controllers\SmsController')->send2($phone, $rand_no);
         }
         return json_encode($this->success);
     }
@@ -151,9 +152,9 @@ class OtpController extends Controller
                     //$inf->mobile = $phone;
                     $inf->save();
 
-                    
+
                     $token = $inf->token;
-                
+
                     return response()->json(compact('usr', 'token'), 201);
                 }
                 //not exist sigup

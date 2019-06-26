@@ -85,6 +85,8 @@ class InfoController extends Controller
             $inf->national_code = $request['national_code'];
         if ($request['psn_id'])
             $inf->psn_id = $request['psn_id'];
+        if ($request['type'])
+            $inf->type = $request['type'];
 
         $inf->save();
 
