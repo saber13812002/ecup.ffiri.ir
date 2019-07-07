@@ -1462,7 +1462,7 @@ var RestProvider = (function () {
                 'Content-Type': 'application/x-www-form-urlencoded',
             })
         };
-        var data = "?mobile=" + mobile; //updated
+        var data = "mobile=" + mobile; //updated
         return this.http.post(uri, data, httpOptions)
             .catch(function (err) {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
@@ -1475,7 +1475,7 @@ var RestProvider = (function () {
                 'Content-Type': 'application/x-www-form-urlencoded',
             })
         };
-        var data = "?mobile=" + mobile + "&code=" + pin; //updated
+        var data = "mobile=" + mobile + "&code=" + pin; //updated
         return this.http.post(uri, data, httpOptions)
             .catch(function (err) {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
