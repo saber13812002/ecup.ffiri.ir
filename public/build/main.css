@@ -25914,7 +25914,6 @@ page-login .footer {
 }
 
 page-login .footer-md::before {
-  border-top: 1px solid rgba(255, 255, 255, 0.6);
   background-image: none;
 }
 
@@ -25922,32 +25921,6 @@ page-login ion-content {
   background-image: url(http://ecupservice.ffiri.ir/images/texture.png);
   background-repeat: repeat;
   background-size: 1800% 1800%;
-  -webkit-animation: rainbow 30s linear infinite;
-  animation: rainbow 30s linear infinite;
-}
-
-@-webkit-keyframes rainbow {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
-
-@keyframes rainbow {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
 }
 
 page-login .scroll-content {
@@ -26086,7 +26059,6 @@ page-login .strike > span:after {
   top: 50%;
   width: 9999px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.6);
 }
 
 page-login .strike > span:before {
@@ -26128,7 +26100,6 @@ page-login2 .footer {
 }
 
 page-login2 .footer-md::before {
-  border-top: 1px solid rgba(255, 255, 255, 0.6);
   background-image: none;
 }
 
@@ -26138,18 +26109,6 @@ page-login2 ion-content {
   background-size: 1800% 1800%;
   -webkit-animation: rainbow 30s linear infinite;
   animation: rainbow 30s linear infinite;
-}
-
-@keyframes rainbow {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
 }
 
 page-login2 .scroll-content {
@@ -26288,7 +26247,6 @@ page-login2 .strike > span:after {
   top: 50%;
   width: 9999px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.6);
 }
 
 page-login2 .strike > span:before {

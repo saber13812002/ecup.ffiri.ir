@@ -40,9 +40,9 @@
                             <li><a href="#works">گالری</a></li>
                             <li><a href="#teams">آمار بازی</a></li>
                             <li><a href="#tables">جدول مسابقات</a></li>
-                            <li><a href="#testimonials"> قوانین</a></li>
-                            <li><a href="/reg">ثبت نام</a></li>
-                            <li><a href="#contact">ورود</a></li>
+                            <li><a href="#testimonials">قوانین</a></li>
+                            <li><a class="reg" href="/reg">ثبت نام</a></li>
+                            <li><a class="login" href="#contact">ورود</a></li>
                         </ul>
                     </nav>
                     <a href="#" class="nav-toggle">منو<span></span></a>
@@ -56,7 +56,7 @@
                     <div class="banner-text text-center">
                         <h1>سامانه فوتبال مجازی ایران</h1>
                         <h3>شما میتوانید در این سایت اطلاعات راجع به بازی ها را ملاحظه نمایید</h3>
-                        <a href="/reg" class="btn btn-large">ورود</a> <a href="/reg" class="btn btn-large">ثبت نام</a>--%>
+                        <a href="/reg" class="btn btn-large login">ورود</a> <a href="/reg" class="btn btn-large reg">ثبت نام</a>
                     </div>
                     <!-- banner text -->
                 </div>
@@ -235,7 +235,7 @@
                     <div class="text-center">
                         <h1>سامانه فوتبال مجازی ایران</h1>
                         <h3>شما میتوانید از طریق دکمه های زیر ثبت نام کنید</h3>
-                        <a href="/reg" class="btn btn-large">ورود</a> <a href="/reg" class="btn btn-large">ثبت نام</a>--%>
+                        <a href="/reg" class="btn btn-large login">ورود</a> <a href="/reg" class="btn btn-large reg">ثبت نام</a>
                     </div>
                 </div>
                 <!-- ./end row -->
@@ -301,6 +301,26 @@
         <script src="js/retina.min.js"></script>
         <script src="js/modernizr.js"></script>
         <script src="js/main.js"></script>
+        <script>
+            if((localStorage.getItem('wpIdeaTokenECUP')?JSON.parse(localStorage.getItem('wpIdeaTokenECUP')):2).token)
+            {
+                setValue('reg','پروفایل');
+                setValue('login','محیط کاربری');
+            }
+            else
+            {
+                setValue('reg','ثبت نام');
+                setValue('login','ورود');
+            }
+
+            function setValue(classname,regval){
+                var showHide = document.getElementsByClassName(classname);
+
+                Array.from(showHide).forEach(element => {
+                    element.innerHTML = regval;
+                });
+            }
+        </script>
     </form>
 </body>
 

@@ -6,9 +6,9 @@ webpackJsonp([0],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__exit_exit__ = __webpack_require__(216);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -32,7 +32,7 @@ var TabsPage = (function () {
         this.tab99Root = __WEBPACK_IMPORTED_MODULE_4__exit_exit__["a" /* ExitPage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\tabs\tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="اطلاعات" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="پرداخت" tabIcon="add-circle"></ion-tab>\n  <ion-tab [root]="tab99Root" tabTitle="خروج" tabIcon="log-out"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\tabs\tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="پروفایل" tabIcon="contact"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="پرداخت" tabIcon="card"></ion-tab>\n  <ion-tab [root]="tab99Root" tabTitle="" tabIcon="more"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\tabs\tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -43,86 +43,7 @@ var TabsPage = (function () {
 
 /***/ }),
 
-/***/ 113:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguageServiceProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/*
-  Generated class for the LanguageServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var LanguageServiceProvider = (function () {
-    function LanguageServiceProvider(http) {
-        this.http = http;
-        this.languages = new Array();
-        console.log('Hello LanguageServiceProvider Provider');
-        this.languages.push({ name: "Persian", code: "fa" }, { name: "English", code: "en" }, { name: "Spanish", code: "es" }, { name: "Arabic", code: "ar" });
-    }
-    LanguageServiceProvider.prototype.getLanguages = function () {
-        return this.languages;
-    };
-    LanguageServiceProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
-    ], LanguageServiceProvider);
-    return LanguageServiceProvider;
-}());
-
-//# sourceMappingURL=language-service.js.map
-
-/***/ }),
-
-/***/ 125:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 125;
-
-/***/ }),
-
-/***/ 168:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 168;
-
-/***/ }),
-
-/***/ 213:
+/***/ 112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -278,67 +199,7 @@ var AboutPage = (function () {
 
 /***/ }),
 
-/***/ 214:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__env__ = __webpack_require__(32);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var ContactPage = (function () {
-    function ContactPage(navCtrl, restProvider, loadingCtrl) {
-        this.navCtrl = navCtrl;
-        this.restProvider = restProvider;
-        this.loadingCtrl = loadingCtrl;
-        this.people = new Array();
-        this.page = 0;
-        this.perPage = 10;
-        this.totalData = 100;
-        this.totalPage = 1;
-        this.serverWebApp = __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].webapp.baseUrl;
-        var loader = loadingCtrl.create({ content: "..." });
-        loader.present();
-    }
-    ContactPage.prototype.loadPlayerDetail = function (person) {
-        console.log(person);
-        this.navCtrl.push(this.detailPage, { person: person });
-    };
-    ContactPage.prototype.doInfinite = function (infiniteScroll) {
-        this.page = this.page + 1;
-    };
-    ContactPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contact',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\contact\contact.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      مسجدی\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-list>\n\n    <ion-list-header>مسجدی ها</ion-list-header>\n\n    <ion-item *ngFor="let p of people">\n\n      <!--      <ion-icon name="ionic" item-start></ion-icon>-->\n\n      <div class="bg-image">\n\n        <hr>\n\n        <ion-thumbnail>\n\n          <img (click)="loadPlayerDetail(p)" src="{{p.img}}" class="round-image" style="height: 150px !important;  width: 150px !important;              background: none !important;     background-color :none !important; display: inline !important;" />\n\n        </ion-thumbnail>\n\n        <!--            </ion-img> -->\n\n        <hr>\n\n        {{p.name}}\n\n        <hr>\n\n\n\n        <a href="https://t.me/{{p.uInstagramId}}"><img class="sociallogo" src="{{serverWebApp}}/assets/imgs/telegram.png" /></a>\n\n        <a href="https://instagram.com/{{p.uTelegramlId}}"><img class="sociallogo" src="{{serverWebApp}}/assets/imgs/instagram.png" /></a>\n\n        <a href="{{p.apiUrl}}/www/player.php?id={{p.id}}"><img class="sociallogo" src="{{serverWebApp}}/assets/imgs/website.png" /></a>\n\n\n\n        <ion-list (click)="loadPlayerDetail(p)">\n\n          <ion-item class="item2col">\n\n            <ion-row>\n\n              <ion-col width-50>\n\n                جنسیت : {{ p.jens=="1" ? "آقا" : "خانم" }}\n\n              </ion-col>\n\n              <ion-col width-50>\n\n                استان : {{p.province}}\n\n              </ion-col>\n\n            </ion-row>\n\n            <ion-row>\n\n              <ion-col width-50>\n\n                رشته : {{p.field}}\n\n              </ion-col>\n\n              <ion-col width-50>\n\n                محل تولد : {{p.birthPlace}}\n\n              </ion-col>\n\n            </ion-row>\n\n          </ion-item>\n\n          <ion-item class="item2col">\n\n            اطلاعات بیشتر\n\n          </ion-item>\n\n        </ion-list>\n\n        <hr>\n\n      </div>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">\n\n    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="..."></ion-infinite-scroll-content>\n\n  </ion-infinite-scroll>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\contact\contact.html"*/,
-            providers: [__WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]]
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]])
-    ], ContactPage);
-    return ContactPage;
-}());
-
-//# sourceMappingURL=contact.js.map
-
-/***/ }),
-
-/***/ 215:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -565,7 +426,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n      <nav class="navigation iranyekan" role="navigation">\n          <ul class="primary-nav">\n              <li><a href="/reg">ثبت نام</a></li>\n              <li><a href="#download">قوانین</a></li>\n              <li><a href="#testimonials">جدول مسابقات</a></li>\n              <li><a href="#teams">آمار بازی</a></li>\n              <li><a href="#works" class="">گالری</a></li>\n              <li><a href="#features" class="">اخبار</a></li>\n          </ul>\n      </nav>\n    <ion-title class="white">\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan white">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [disabled]="true" [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="checkNID()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagNID">\n      لطفا عدد کدملی خود را کامل و صحیح وارد کنید\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="checkPSN()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagPSN">\n      لطفا آی دی را وارد کنید\n    </ion-item>\n\n\n    <ion-item>\n      <ion-label>قصد شرکت در کدام مسابقه را دارید؟</ion-label>\n      <ion-select (ionChange)="modified()" [(ngModel)]="type" value="onlinefriendlies" okText="ثبت" cancelText="انصراف">\n        <ion-option value="Online Friendlies">Online Friendlies</ion-option>\n        <ion-option value="FUT">FUT</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button white">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n\n    <ion-title class="white">\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan white">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [disabled]="true" [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="checkNID()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagNID">\n      لطفا عدد کدملی خود را کامل و صحیح وارد کنید\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="checkPSN()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagPSN">\n      لطفا آی دی را وارد کنید\n    </ion-item>\n\n\n    <ion-item>\n      <ion-label>قصد شرکت در کدام مسابقه را دارید؟</ion-label>\n      <ion-select (ionChange)="modified()" [(ngModel)]="type" value="onlinefriendlies" okText="ثبت" cancelText="انصراف">\n        <ion-option value="Online Friendlies">Online Friendlies</ion-option>\n        <ion-option value="FUT">FUT</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button white">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -580,6 +441,145 @@ var HomePage = (function () {
 
 /***/ }),
 
+/***/ 115:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguageServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/*
+  Generated class for the LanguageServiceProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var LanguageServiceProvider = (function () {
+    function LanguageServiceProvider(http) {
+        this.http = http;
+        this.languages = new Array();
+        console.log('Hello LanguageServiceProvider Provider');
+        this.languages.push({ name: "Persian", code: "fa" }, { name: "English", code: "en" }, { name: "Spanish", code: "es" }, { name: "Arabic", code: "ar" });
+    }
+    LanguageServiceProvider.prototype.getLanguages = function () {
+        return this.languages;
+    };
+    LanguageServiceProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+    ], LanguageServiceProvider);
+    return LanguageServiceProvider;
+}());
+
+//# sourceMappingURL=language-service.js.map
+
+/***/ }),
+
+/***/ 127:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 127;
+
+/***/ }),
+
+/***/ 170:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 170;
+
+/***/ }),
+
+/***/ 215:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__env__ = __webpack_require__(32);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ContactPage = (function () {
+    function ContactPage(navCtrl, restProvider, loadingCtrl) {
+        this.navCtrl = navCtrl;
+        this.restProvider = restProvider;
+        this.loadingCtrl = loadingCtrl;
+        this.people = new Array();
+        this.page = 0;
+        this.perPage = 10;
+        this.totalData = 100;
+        this.totalPage = 1;
+        this.serverWebApp = __WEBPACK_IMPORTED_MODULE_3__env__["a" /* ENV */].webapp.baseUrl;
+        var loader = loadingCtrl.create({ content: "..." });
+        loader.present();
+    }
+    ContactPage.prototype.loadPlayerDetail = function (person) {
+        console.log(person);
+        this.navCtrl.push(this.detailPage, { person: person });
+    };
+    ContactPage.prototype.doInfinite = function (infiniteScroll) {
+        this.page = this.page + 1;
+    };
+    ContactPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-contact',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\contact\contact.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      مسجدی\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-list>\n\n    <ion-list-header>مسجدی ها</ion-list-header>\n\n    <ion-item *ngFor="let p of people">\n\n      <!--      <ion-icon name="ionic" item-start></ion-icon>-->\n\n      <div class="bg-image">\n\n        <hr>\n\n        <ion-thumbnail>\n\n          <img (click)="loadPlayerDetail(p)" src="{{p.img}}" class="round-image" style="height: 150px !important;  width: 150px !important;              background: none !important;     background-color :none !important; display: inline !important;" />\n\n        </ion-thumbnail>\n\n        <!--            </ion-img> -->\n\n        <hr>\n\n        {{p.name}}\n\n        <hr>\n\n\n\n        <a href="https://t.me/{{p.uInstagramId}}"><img class="sociallogo" src="{{serverWebApp}}/assets/imgs/telegram.png" /></a>\n\n        <a href="https://instagram.com/{{p.uTelegramlId}}"><img class="sociallogo" src="{{serverWebApp}}/assets/imgs/instagram.png" /></a>\n\n        <a href="{{p.apiUrl}}/www/player.php?id={{p.id}}"><img class="sociallogo" src="{{serverWebApp}}/assets/imgs/website.png" /></a>\n\n\n\n        <ion-list (click)="loadPlayerDetail(p)">\n\n          <ion-item class="item2col">\n\n            <ion-row>\n\n              <ion-col width-50>\n\n                جنسیت : {{ p.jens=="1" ? "آقا" : "خانم" }}\n\n              </ion-col>\n\n              <ion-col width-50>\n\n                استان : {{p.province}}\n\n              </ion-col>\n\n            </ion-row>\n\n            <ion-row>\n\n              <ion-col width-50>\n\n                رشته : {{p.field}}\n\n              </ion-col>\n\n              <ion-col width-50>\n\n                محل تولد : {{p.birthPlace}}\n\n              </ion-col>\n\n            </ion-row>\n\n          </ion-item>\n\n          <ion-item class="item2col">\n\n            اطلاعات بیشتر\n\n          </ion-item>\n\n        </ion-list>\n\n        <hr>\n\n      </div>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">\n\n    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="..."></ion-infinite-scroll-content>\n\n  </ion-infinite-scroll>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\contact\contact.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]])
+    ], ContactPage);
+    return ContactPage;
+}());
+
+//# sourceMappingURL=contact.js.map
+
+/***/ }),
+
 /***/ 216:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -589,6 +589,8 @@ var HomePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__about_about__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(114);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -637,6 +639,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
+
 var ExitPage = (function () {
     function ExitPage(iab, navCtrl, toastController) {
         this.iab = iab;
@@ -651,12 +655,20 @@ var ExitPage = (function () {
             });
         });
     };
-    ExitPage.prototype.exit = function () {
+    ExitPage.prototype.exit = function (type) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                console.log('log-out');
-                localStorage.removeItem('wpIdeaTokenECUP');
-                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                console.log('setting buttion');
+                if (type == 'profile') {
+                    this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* HomePage */]);
+                }
+                else if (type == 'payment') {
+                    this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__about_about__["a" /* AboutPage */]);
+                }
+                else {
+                    localStorage.removeItem('wpIdeaTokenECUP');
+                    this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                }
                 return [2 /*return*/];
             });
         });
@@ -672,7 +684,7 @@ var ExitPage = (function () {
     };
     ExitPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-exit',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\exit\exit.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      خروج\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  خروج\n  <button ion-button block clear (click)="exit()" color="dark" class="login-button">\n    <ion-icon name="log-out"></ion-icon> خروج\n  </button>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\exit\exit.html"*/
+            selector: 'page-exit',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\exit\exit.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      منو\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  منو\n  <button ion-button block clear (click)="exit()" color="dark" class="login-button">\n    <ion-icon name="log-out"> </ion-icon> خروج\n  </button>\n  <button ion-button block clear (click)="exit(\'payment\')" color="dark" class="login-button">\n    <ion-icon name="card"> </ion-icon> پرداخت\n  </button>\n  <button ion-button block clear (click)="exit(\'profile\')" color="dark" class="login-button">\n    <ion-icon name="contact"> </ion-icon> پروفایل\n  </button>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\exit\exit.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -694,11 +706,11 @@ var ExitPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_language_service_language_service__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_language_service_language_service__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_rest_rest__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__env__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__login_login__ = __webpack_require__(59);
@@ -1081,18 +1093,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(283);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_about_about__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_contact_contact__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_home__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_about_about__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_contact_contact__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_home__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ngx_translate_http_loader__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_language_service_language_service__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_language_service_language_service__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_login_login__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login2_login2__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_exit_exit__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_status_bar__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_splash_screen__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_status_bar__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_splash_screen__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_rest_rest__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_wp_rest_posts__ = __webpack_require__(304);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1196,8 +1208,8 @@ function createTranslateLoader(http) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FifaApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(59);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1388,7 +1400,7 @@ var ENV = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(298);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__);
@@ -1603,11 +1615,11 @@ var RestProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login2_login2__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_language_service_language_service__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_language_service_language_service__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_rest_rest__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__env__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_http__ = __webpack_require__(48);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
