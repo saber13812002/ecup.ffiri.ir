@@ -1460,6 +1460,7 @@ var RestProvider = (function () {
         var httpOptions = {
             headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({
                 'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': '*/*',
             })
         };
         var data = "mobile=" + mobile; //updated
@@ -1473,6 +1474,7 @@ var RestProvider = (function () {
         var httpOptions = {
             headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({
                 'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': '*/*',
             })
         };
         var data = "mobile=" + mobile + "&code=" + pin; //updated
