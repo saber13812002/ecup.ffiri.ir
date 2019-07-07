@@ -38,18 +38,7 @@ class OtpController extends Controller
     {
         $phone = $request['mobile'];
 
-        $this->otp1function($phone);
-    }
 
-    public function otp11get(Request $request)
-    {
-        if ($request->mobile) {
-            return $this->otp1function($request->mobile);
-        }
-    }
-
-    public function otp1function($phone)
-    {
         $rand_no = 0;
         $len = strlen($phone);
 
@@ -86,18 +75,7 @@ class OtpController extends Controller
         $phone = $request['phone'];
         $code = $request['code'];
 
-        $this->otp2function($phone, $code);
-    }
 
-    public function otp22get($mobile, $code)
-    {
-        if ($mobile && $code) {
-            return $this->otp2function($mobile, $code);
-        }
-    }
-
-    public function otp2function($phone, $code)
-    {
         $exist = 0;
         $correctToken = 0;
 
