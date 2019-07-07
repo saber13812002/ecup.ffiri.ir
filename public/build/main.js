@@ -1462,7 +1462,7 @@ var RestProvider = (function () {
                 'Content-Type': 'application/x-www-form-urlencoded',
             })
         };
-        var data = "mobile=" + mobile; //updated
+        var data = "?mobile=" + mobile; //updated
         return this.http.post(uri, data, httpOptions)
             .catch(function (err) {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
@@ -1475,7 +1475,7 @@ var RestProvider = (function () {
                 'Content-Type': 'application/x-www-form-urlencoded',
             })
         };
-        var data = "mobile=" + mobile + "&code=" + pin; //updated
+        var data = "?mobile=" + mobile + "&code=" + pin; //updated
         return this.http.post(uri, data, httpOptions)
             .catch(function (err) {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err);
@@ -1583,10 +1583,10 @@ var RestProvider = (function () {
     };
     RestProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]) === "function" && _b || Object])
     ], RestProvider);
     return RestProvider;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=rest.js.map
