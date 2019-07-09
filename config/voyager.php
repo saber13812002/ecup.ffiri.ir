@@ -104,19 +104,20 @@ return [
         /*
          * Set whether or not the multilingual is supported by the BREAD input.
          */
-        'enabled' => false,
+        'enabled' => true,
+        'rtl' => true,
 
         /*
          * Select default language
          */
-        'default' => 'en',
+        'default' => 'fa',
 
         /*
          * Select languages that are supported.
          */
         'locales' => [
             'en',
-            //'pt',
+            'fa',
         ],
     ],
 
