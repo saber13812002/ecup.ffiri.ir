@@ -262,12 +262,20 @@ var HomePage = (function () {
         this.loadingCtrl = loadingCtrl;
         this.toastController = toastController;
         this.patternNationalCode = /^\d{10}$/;
+        this.patternFarsi = /[^a-zA-Z]+$/;
+        this.patternEnglish = /^[a-zA-Z]+$/;
+        this.patternUsername = /^[a-zA-Z0-9$@$!%*?&#^-_. +]+$/;
+        this.patternEmail = /^[a-zA-Z0-9$@$!%*?&#^-_. +]+$/;
+        this.patternMobile = /^(0)?9\d{9}$/;
         this.stories = new Array();
         this.posts = new Array();
         this.token = "";
         this.data2 = { id: '', family: '', name: '', mobile: '' };
-        this.flagPSN = true;
+        this.flagPSN = false;
         this.flagNID = true;
+        this.flagName = false;
+        this.flagFamily = false;
+        this.flagEmail = false;
         this.change = false;
         this.page = 0;
         this.perPage = 10;
@@ -332,6 +340,24 @@ var HomePage = (function () {
     };
     HomePage.prototype.modified = function () {
         this.change = true;
+        if (this.patternFarsi.test(this.name)) {
+            this.flagName = false;
+        }
+        else {
+            this.flagName = true;
+        }
+        if (this.patternFarsi.test(this.family)) {
+            this.flagFamily = false;
+        }
+        else {
+            this.flagFamily = true;
+        }
+        if (this.patternEmail.test(this.email)) {
+            this.flagEmail = false;
+        }
+        else {
+            this.flagEmail = true;
+        }
     };
     HomePage.prototype.checkNID = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -351,11 +377,11 @@ var HomePage = (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 this.modified();
-                if ((this.psn_id)) {
-                    this.flagPSN = true;
+                if (this.patternEmail.test(this.psn_id)) {
+                    this.flagPSN = false;
                 }
                 else {
-                    this.flagPSN = false;
+                    this.flagPSN = true;
                 }
                 return [2 /*return*/];
             });
@@ -426,7 +452,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n\n    <ion-title class="white">\n      تکمیل اطلاعات\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content dir="rtl" class="iranyekan white">\n\n    <ion-item>\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [disabled]="true" [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="national_code" (ionChange)="checkNID()" type="text" placeholder="کد ملی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagNID">\n      لطفا عدد کدملی خود را کامل و صحیح وارد کنید\n    </ion-item>\n\n    <ion-item>\n      <ion-input [(ngModel)]="psn_id" (ionChange)="checkPSN()" type="text" placeholder="پلی استیشن آی دی"></ion-input>\n    </ion-item>\n\n    <ion-item class="danger" *ngIf="!flagPSN">\n      لطفا آی دی را وارد کنید\n    </ion-item>\n\n\n    <ion-item>\n      <ion-label>قصد شرکت در کدام مسابقه را دارید؟</ion-label>\n      <ion-select (ionChange)="modified()" [(ngModel)]="type" value="onlinefriendlies" okText="ثبت" cancelText="انصراف">\n        <ion-option value="Online Friendlies">Online Friendlies</ion-option>\n        <ion-option value="FUT">FUT</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n      class="login-button white">ذخیره</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n\n\n    <ion-title class="white">\n\n      تکمیل اطلاعات\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content dir="rtl" class="iranyekan white">\n\n\n\n    <ion-item>\n\n      <ion-input [(ngModel)]="name" (ionChange)="modified()" type="text" placeholder="نام"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item class="danger" *ngIf="flagName">\n\n      لطفا نام خود را فارسی وارد کنید\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-input [(ngModel)]="family" (ionChange)="modified()" type="text" placeholder="نام خانوادگی"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item class="danger" *ngIf="flagFamily">\n\n      لطفا نام خانوادگی را فارسی وارد کنید\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-input [disabled]="true" [(ngModel)]="mobile" (ionChange)="modified()" type="text" placeholder="موبایل"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-input [(ngModel)]="email" (ionChange)="modified()" type="text" placeholder="ایمیل"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item class="danger" *ngIf="flagEmail">\n\n      لطفا ایمیل خود را با حروف انگلیسی و به صورت کامل و صحیح وارد کنید\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-input [(ngModel)]="national_code" (ionChange)="checkNID()" type="text" placeholder="کد ملی"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item class="danger" *ngIf="!flagNID">\n\n      لطفا عدد کدملی خود را کامل و صحیح ده رقمی وارد کنید\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-input [(ngModel)]="psn_id" (ionChange)="checkPSN()" type="text" placeholder="گیم آی دی پلی استیشن و "></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item class="danger" *ngIf="flagPSN">\n\n      لطفا آی دی را وارد کنید\n\n    </ion-item>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label>قصد شرکت در کدام مسابقه را دارید؟</ion-label>\n\n      <ion-select (ionChange)="modified()" [(ngModel)]="type" value="onlinefriendlies" okText="ثبت" cancelText="انصراف">\n\n        <ion-option value="Online Friendlies">Online Friendlies</ion-option>\n\n        <ion-option value="FUT">FUT</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n    <button [disabled]="!change" ion-button block outline (click)="save()"\n\n      class="login-button white">ذخیره</button>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\saber\SaberProjects\Fifa\fifa-ionic\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
