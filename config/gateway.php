@@ -35,9 +35,9 @@ return [
     // Saman gateway
     //--------------------------------
     'saman' => [
-        'merchant'     => '',
-        'password'     => '',
-        'callback-url'   => '/',
+        'merchant'     => '11644239',
+        'password'     => '1253619',
+        'callback-url'   => '/verifypayment',
     ],
 
     //--------------------------------
