@@ -15,7 +15,10 @@ class BankController extends Controller
 
             if ($pay->result <> "Payed") {
 
-                $gateway = \Gateway::mellat();
+                // $gateway = \Gateway::mellat();
+
+                $gateway = \Gateway::saman();
+
 
                 $gateway
                     ->price(1000)
@@ -26,7 +29,13 @@ class BankController extends Controller
                 $refId =  $gateway->refId(); // شماره ارجاع بانک
                 $transId = $gateway->transactionId(); // شماره تراکنش
 
-                $gateway->setCallback(url('/verifypayment' . '/' . $transId . '/' . $refId)); //You can also change the callback
+                //mellat:
+
+                //$gateway->setCallback(url('/verifypayment' . '/' . $transId . '/' . $refId)); //You can also change the callback
+
+
+                //saman:
+                $gateway->setCallback(url('/verifypayment')); //You can also change the callback
 
 
                 // در اینجا
@@ -46,8 +55,6 @@ class BankController extends Controller
             return "
             پرداخت برای کاربر شما یکبار با موفقیت انجام شده است 
             به اپ باز گردید و صفحه را ریفرش کنید";
-
-
         } catch (\Exception $e) {
 
             echo $e->getMessage();
@@ -77,6 +84,8 @@ class BankController extends Controller
             echo "\n\r" . "<br>";
 
             echo "به اپلیکیشن باز گردید";
+
+            echo "<a href='" . env('APP_HOT_LINK') . "'>بازگشت به اپ اینجا کلیک کنید</a>";
         } catch (\Larautility\Gateway\Exceptions\RetryException $e) {
 
             // تراکنش قبلا سمت بانک تاییده شده است و
